@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke suite" verbose="2">
+    <groups>
+        <run>
+            <include name="Smoke"/>
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="org.complete.framework.utilities.listeners.TestListeners"/>
+        <listener class-name="org.complete.framework.utilities.listeners.SuiteListeners"/>
+    </listeners>
+
+    <test name="credentials">
+        <packages>
+            <package name="org.complete.framework.credentials"/>
+        </packages>
+    </test>
+</suite>
