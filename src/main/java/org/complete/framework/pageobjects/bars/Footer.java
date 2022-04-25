@@ -1,5 +1,6 @@
 package org.complete.framework.pageobjects.bars;
 
+import io.qameta.allure.Step;
 import org.complete.framework.models.UrlModel;
 import org.complete.framework.pageobjects.BasePage;
 import org.openqa.selenium.By;
@@ -20,10 +21,11 @@ public class Footer extends BasePage {
     }
 
     @Override
-    public void waitPageToLoad() {
-    }
+    @Step("Waiting footer to load")
+    public void waitPageToLoad() {}
 
     @Override
+    @Step("Verifying footer")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(verifyIsDisplayed(socialList), "item is displayed");
@@ -35,6 +37,7 @@ public class Footer extends BasePage {
         softAssert.assertAll();
     }
 
+    @Step("Verifying social media links")
     public void verifySocialMediaLinks(Map<String, UrlModel> urlMap) {
         var actualTwitterLink = getHref(twitterOption);
         var actualFacebookLink = getHref(facebookOption);

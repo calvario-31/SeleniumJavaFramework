@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class HeaderTests extends BaseTest {
     private Header header;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
     }

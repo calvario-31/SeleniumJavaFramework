@@ -14,7 +14,7 @@ import static org.complete.framework.utilities.DataProviders.SOCIAL_MEDIA_URL_DA
 public class FooterTests extends BaseTest {
     private Footer footer;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
     }

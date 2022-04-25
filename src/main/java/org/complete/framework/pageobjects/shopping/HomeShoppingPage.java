@@ -1,5 +1,6 @@
 package org.complete.framework.pageobjects.shopping;
 
+import io.qameta.allure.Step;
 import org.complete.framework.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +19,13 @@ public class HomeShoppingPage extends BasePage {
     }
 
     @Override
+    @Step("Waiting home shopping page to load")
     public void waitPageToLoad() {
         waitPage(inventoryContainer, this.getClass().getSimpleName());
     }
 
     @Override
+    @Step("Verifying home shopping page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(verifyIsDisplayed(title), "title is displayed");
@@ -32,6 +35,7 @@ public class HomeShoppingPage extends BasePage {
         softAssert.assertAll();
     }
 
+    @Step("Filtering by name")
     public void filterByName(boolean isAscendant) {
         var select = getSelect(filterSelect);
         if (isAscendant) {
@@ -43,6 +47,7 @@ public class HomeShoppingPage extends BasePage {
         }
     }
 
+    @Step("Filtering by price")
     public void filterByPrice(boolean isAscendant) {
         var select = getSelect(filterSelect);
         if (isAscendant) {
@@ -54,6 +59,7 @@ public class HomeShoppingPage extends BasePage {
         }
     }
 
+    @Step("Verifying item price order")
     public void verifyItemPriceOrder(boolean isAscendant) {
         var listElements = findAllElements(allPrices);
 
@@ -71,6 +77,7 @@ public class HomeShoppingPage extends BasePage {
         }
     }
 
+    @Step("Verifying item name order")
     public void verifyItemNameOrder(boolean isAscendant) {
         var listElements = findAllElements(allNames);
 

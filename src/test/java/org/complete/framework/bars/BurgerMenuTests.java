@@ -13,7 +13,7 @@ public class BurgerMenuTests extends BaseTest {
     private BurgerMenu burgerMenu;
     private LoginPage loginPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
         commonFlows.openMenuBurger();

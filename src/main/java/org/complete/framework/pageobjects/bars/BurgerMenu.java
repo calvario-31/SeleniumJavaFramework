@@ -1,5 +1,6 @@
 package org.complete.framework.pageobjects.bars;
 
+import io.qameta.allure.Step;
 import org.complete.framework.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +17,13 @@ public class BurgerMenu extends BasePage {
     }
 
     @Override
+    @Step("Waiting menu burger to load")
     public void waitPageToLoad() {
         waitPage(itemList, this.getClass().getSimpleName());
     }
 
     @Override
+    @Step("Verifying burger menu page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(verifyIsDisplayed(itemList), "item is displayed");
@@ -30,6 +33,7 @@ public class BurgerMenu extends BasePage {
         softAssert.assertAll();
     }
 
+    @Step("Verifying about link")
     public void verifyAboutLink(String expectedLink) {
         var actualLink = getHref(aboutOption);
         log.info("Verifying about link");
@@ -39,11 +43,13 @@ public class BurgerMenu extends BasePage {
         Assert.assertTrue(verifyIsClickable(aboutOption));
     }
 
+    @Step("Clicking on logout option")
     public void clickOnLogout() {
         log.info("Clicking on logout option");
         click(logoutOption);
     }
 
+    @Step("Clicking on all items option")
     public void clickOnAllItems() {
         log.info("Clicking on all items option");
         click(allItemsOption);

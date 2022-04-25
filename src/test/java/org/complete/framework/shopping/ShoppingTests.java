@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class ShoppingTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setup() {
         commonFlows.loginValidUser();
     }

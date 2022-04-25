@@ -1,5 +1,6 @@
 package org.complete.framework.pageobjects.bars;
 
+import io.qameta.allure.Step;
 import org.complete.framework.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,10 +15,11 @@ public class Header extends BasePage {
     }
 
     @Override
-    public void waitPageToLoad() {
-    }
+    @Step("Waiting header to load")
+    public void waitPageToLoad() {}
 
     @Override
+    @Step("Verifying header")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(verifyIsDisplayed(appLogo), "app logo is displayed");
@@ -26,11 +28,13 @@ public class Header extends BasePage {
         softAssert.assertAll();
     }
 
+    @Step("Opening burger menu")
     public void openBurgerMenu() {
         log.info("Opening burger menu");
         click(burgerMenuButton);
     }
 
+    @Step("Clicking on checkout cart")
     public void clickOnCheckoutCart() {
         log.info("Clicking on checkout cart");
         click(cartButton);
