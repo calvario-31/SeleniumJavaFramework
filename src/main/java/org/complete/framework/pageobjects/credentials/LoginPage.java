@@ -5,14 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class Login extends BasePage {
+public class LoginPage extends BasePage {
     private final By emailInput = By.id("user-name");
     private final By passwordInput = By.id("password");
     private final By buttonLogin = By.id("login-button");
     private final By loginLogo = By.className("login_logo");
     private final By errorMessage = By.cssSelector("h3[data-test='error']");
 
-    public Login(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 

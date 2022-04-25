@@ -1,33 +1,43 @@
 package org.complete.framework.utilities;
 
-import org.complete.framework.models.CredentialsModel;
-import org.complete.framework.pageobjects.credentials.Login;
-import org.complete.framework.pageobjects.shopping.HomeShopping;
-import org.complete.framework.utilities.reader.CredentialsReader;
+import org.complete.framework.models.CredentialModel;
+import org.complete.framework.pageobjects.bars.BurgerMenu;
+import org.complete.framework.pageobjects.bars.Header;
+import org.complete.framework.pageobjects.credentials.LoginPage;
+import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
 import org.openqa.selenium.WebDriver;
 
 public class CommonFlows {
     private final WebDriver driver;
-    private Login login;
-    private HomeShopping homeShopping;
-    private CredentialsModel credentials;
+    private LoginPage login;
+    private HomeShoppingPage homeShopping;
+    private CredentialModel credentials;
+    private Header header;
+    private BurgerMenu burgerMenu;
 
     public CommonFlows(WebDriver driver) {
         this.driver = driver;
     }
 
     public void goToIndex() {
-        login = new Login(driver);
+        login = new LoginPage(driver);
         login.goToIndex();
         login.waitPageToLoad();
     }
 
     public void loginValidUser() {
-        credentials = new CredentialsReader().getValidCredentials();
-        login = new Login(driver);
-        homeShopping = new HomeShopping(driver);
+        credentials = new DataProviders().getValidCredentials();
+        login = new LoginPage(driver);
+        homeShopping = new HomeShoppingPage(driver);
 
         login.fillCredentials(credentials.getUsername(), credentials.getPassword());
         homeShopping.waitPageToLoad();
+    }
+
+    public void openMenuBurger() {
+        header = new Header(driver);
+        header.openBurgerMenu();
+        burgerMenu = new BurgerMenu(driver);
+        burgerMenu.waitPageToLoad();
     }
 }

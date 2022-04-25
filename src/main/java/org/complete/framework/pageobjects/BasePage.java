@@ -3,10 +3,12 @@ package org.complete.framework.pageobjects;
 import org.complete.framework.utilities.Logs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.List;
 
 public abstract class BasePage {
     protected WebDriver driver;
@@ -34,6 +36,10 @@ public abstract class BasePage {
         return driver.findElement(locator);
     }
 
+    protected List<WebElement> findAllElements(By locator) {
+        return driver.findElements(locator);
+    }
+
     protected void click(By locator) {
         findElement(locator).click();
     }
@@ -42,13 +48,35 @@ public abstract class BasePage {
         findElement(locator).sendKeys(text);
     }
 
+    protected Select getSelect(By locator) {
+        return new Select(findElement(locator));
+    }
+
+    protected String getHref(By locator) {
+        return findElement(locator).getAttribute("href");
+    }
+
     protected void waitForVisibility(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected void waitForClickable(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     protected boolean verifyIsDisplayed(By locator) {
         try {
             waitForVisibility(locator);
+            return true;
+        } catch (NoSuchElementException | StaleElementReferenceException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    protected boolean verifyIsClickable(By locator) {
+        try {
+            waitForClickable(locator);
             return true;
         } catch (NoSuchElementException | StaleElementReferenceException exception) {
             exception.printStackTrace();
@@ -68,5 +96,6 @@ public abstract class BasePage {
     }
 
     public abstract void waitPageToLoad();
+
     public abstract void verifyPage();
 }

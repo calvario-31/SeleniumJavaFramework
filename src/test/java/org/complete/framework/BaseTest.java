@@ -33,14 +33,14 @@ public abstract class BaseTest {
         commonFlows = new CommonFlows(driver);
     }
 
-    @BeforeMethod (alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     protected void setupDriver() {
         initDriver();
         initPages();
         commonFlows.goToIndex();
     }
 
-    @AfterMethod (alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     protected void teardownDriver() {
         driver.quit();
     }
