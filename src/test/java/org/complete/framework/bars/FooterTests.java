@@ -26,7 +26,7 @@ public class FooterTests extends BaseTest {
 
     @Test(groups = {REGRESSION}, dataProvider = SOCIAL_MEDIA_URL_DATA_PROVIDER,
             dataProviderClass = DataProviders.class)
-    public void verifySocialMediaLinks(Map<String, UrlModel> urlMap) {
+    public void verifySocialMediaLinksTest(Map<String, UrlModel> urlMap) {
         footer.verifySocialMediaLinks(urlMap);
     }
 

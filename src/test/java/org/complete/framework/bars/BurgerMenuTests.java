@@ -26,7 +26,7 @@ public class BurgerMenuTests extends BaseTest {
 
     @Test(groups = {REGRESSION}, dataProvider = SAUCE_LABS_URL_DATA_PROVIDER,
             dataProviderClass = DataProviders.class)
-    public void verifyAboutLink(String url) {
+    public void verifyAboutLinkTest(String url) {
         burgerMenu.verifyAboutLink(url);
     }
 

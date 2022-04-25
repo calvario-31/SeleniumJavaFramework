@@ -15,8 +15,8 @@ public abstract class BaseTest {
     protected CommonFlows commonFlows;
     protected static final String REGRESSION = "Regression";
     protected static final String SMOKE = "Smoke";
-    private DriverManager driverManager;
     private final boolean runOnServer = System.getenv("JOB_NAME") != null;
+    private DriverManager driverManager;
 
     private void initDriver() {
         driverManager = new DriverManager();
