@@ -16,7 +16,9 @@ public class Header extends BasePage {
 
     @Override
     @Step("Waiting header to load")
-    public void waitPageToLoad() {}
+    public void waitPageToLoad() {
+        waitPage(appLogo, this.getClass().getSimpleName());
+    }
 
     @Override
     @Step("Verifying header")

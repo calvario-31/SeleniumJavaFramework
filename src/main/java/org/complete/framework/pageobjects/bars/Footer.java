@@ -22,7 +22,9 @@ public class Footer extends BasePage {
 
     @Override
     @Step("Waiting footer to load")
-    public void waitPageToLoad() {}
+    public void waitPageToLoad() {
+        waitPage(socialList, this.getClass().getSimpleName());
+    }
 
     @Override
     @Step("Verifying footer")
