@@ -36,7 +36,16 @@ public class CommonFlows {
     public void openMenuBurger() {
         var header = new Header(driver);
         var burgerMenu = new BurgerMenu(driver);
+
         header.openBurgerMenu();
         burgerMenu.waitPageToLoad();
+    }
+
+    public void verifyFooterHeader() {
+        var footer = new Footer(driver);
+        var header = new Header(driver);
+
+        footer.verifyPage();
+        header.verifyPage();
     }
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.Map;
 
-import static org.complete.framework.utilities.DataProviders.SOCIAL_MEDIA_URL_DATA_PROVIDER;
+import static org.complete.framework.utilities.DataProviders.SOCIAL_MEDIA_URL_DP;
 
 public class FooterTests extends BaseTest {
     private Footer footer;
@@ -24,8 +24,7 @@ public class FooterTests extends BaseTest {
         footer.verifyPage();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = SOCIAL_MEDIA_URL_DATA_PROVIDER,
-            dataProviderClass = DataProviders.class)
+    @Test(groups = {REGRESSION}, dataProvider = SOCIAL_MEDIA_URL_DP, dataProviderClass = DataProviders.class)
     public void verifySocialMediaLinksTest(Map<String, UrlModel> urlMap) {
         footer.verifySocialMediaLinks(urlMap);
     }

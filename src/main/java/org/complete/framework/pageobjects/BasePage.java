@@ -56,8 +56,16 @@ public abstract class BasePage {
         return findElement(locator).getAttribute("href");
     }
 
+    protected String getText(By locator) {
+        return findElement(locator).getText();
+    }
+
     protected void waitForVisibility(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected void waitForInvisibility(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     protected void waitForClickable(By locator) {
@@ -67,6 +75,16 @@ public abstract class BasePage {
     protected boolean verifyIsDisplayed(By locator) {
         try {
             waitForVisibility(locator);
+            return true;
+        } catch (NoSuchElementException | StaleElementReferenceException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    protected boolean verifyIsNotDisplayed(By locator) {
+        try {
+            waitForInvisibility(locator);
             return true;
         } catch (NoSuchElementException | StaleElementReferenceException exception) {
             exception.printStackTrace();
