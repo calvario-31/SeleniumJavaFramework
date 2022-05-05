@@ -6,10 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ItemDetailTests extends BaseTest {
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
-
     }
 
     @Test (groups = {SMOKE})

@@ -16,7 +16,7 @@ public class StepOneTests extends BaseTest {
     private StepTwoPage stepTwoPage;
     private CartPage cartPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
         commonFlows.addItemsAndGoToStepOne();

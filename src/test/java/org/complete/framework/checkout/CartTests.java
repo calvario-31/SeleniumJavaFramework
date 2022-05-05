@@ -15,7 +15,7 @@ public class CartTests extends BaseTest {
     private Header header;
     private final ItemModel itemToAdd = new DataProviders().getSingleItem();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
         commonFlows.addSingleItemToCart(itemToAdd);
