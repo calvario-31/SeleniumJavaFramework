@@ -14,7 +14,7 @@ public class CartPage extends BasePage {
     private final By itemQuantity = By.className("cart_quantity");
     private final By itemName = By.className("inventory_item_name");
     private final By itemPrice = By.className("inventory_item_price");
-    private final By removeItemButton = By.id("remove-sauce-labs-backpack");
+    private final By removeItemButton = By.xpath("//button[text()='Remove']");
     private final By cartItemRow = By.className("cart_item");
 
     public CartPage(WebDriver driver) {
@@ -39,7 +39,7 @@ public class CartPage extends BasePage {
     }
 
     @Step("Verify item contents")
-    public void verifyItemContents(double price, String name, int quantity) {
+    public void verifyItemContents(double price, String name) {
         log.info("Verifying item row are displayed");
         softAssert.assertTrue(verifyIsDisplayed(itemQuantity), "quantity label is displayed");
         softAssert.assertTrue(verifyIsDisplayed(itemName), "description label is displayed");
@@ -48,13 +48,13 @@ public class CartPage extends BasePage {
         softAssert.assertAll();
 
         var itemQuantityUI = Integer.parseInt(getText(itemQuantity));
-        var itemPriceUI = getText(itemPrice).substring(1);
+        var itemPriceUI = Double.parseDouble(getText(itemPrice).substring(1));
         var itemNameUI = getText(itemName);
 
         log.info("Verifying item contents are correct");
         softAssert.assertEquals(itemPriceUI, price, "price is correct");
         softAssert.assertEquals(itemNameUI, name,"name is correct");
-        softAssert.assertEquals(itemQuantityUI, quantity, "quantity is correct");
+        softAssert.assertEquals(itemQuantityUI, 1, "quantity is correct");
         softAssert.assertAll();
     }
 

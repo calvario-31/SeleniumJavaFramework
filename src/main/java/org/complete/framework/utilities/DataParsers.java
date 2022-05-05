@@ -1,6 +1,7 @@
 package org.complete.framework.utilities;
 
 import org.complete.framework.models.CredentialModel;
+import org.complete.framework.models.ErrorMessageModel;
 import org.complete.framework.models.ItemModel;
 import org.complete.framework.models.UrlModel;
 
@@ -30,6 +31,15 @@ public class DataParsers {
         var hashMap = new HashMap<String, ItemModel>();
         for (ItemModel item : itemModelList) {
             hashMap.put(item.getKey(), item);
+        }
+        return hashMap;
+    }
+
+    public HashMap<String, ErrorMessageModel> getErrorMessageMap() {
+        var itemModelList = new ExcelReader().getErrorMessageList();
+        var hashMap = new HashMap<String, ErrorMessageModel>();
+        for (ErrorMessageModel errorMessage : itemModelList) {
+            hashMap.put(errorMessage.getKey(), errorMessage);
         }
         return hashMap;
     }

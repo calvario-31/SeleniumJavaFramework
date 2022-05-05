@@ -2,6 +2,7 @@ package org.complete.framework.utilities;
 
 import com.poiji.bind.Poiji;
 import org.complete.framework.models.CredentialModel;
+import org.complete.framework.models.ErrorMessageModel;
 import org.complete.framework.models.ItemModel;
 import org.complete.framework.models.UrlModel;
 
@@ -25,5 +26,10 @@ public class ExcelReader {
     public List<ItemModel> getItemList() {
         log.info("Reading item list from: " + EXCEL_PATH);
         return Poiji.fromExcel(new File(EXCEL_PATH), ItemModel.class);
+    }
+
+    public List<ErrorMessageModel> getErrorMessageList() {
+        log.info("Reading error messages from: " + EXCEL_PATH);
+        return Poiji.fromExcel(new File(EXCEL_PATH), ErrorMessageModel.class);
     }
 }

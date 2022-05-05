@@ -1,10 +1,14 @@
 package org.complete.framework.utilities;
 
+import org.complete.framework.models.ItemModel;
 import org.complete.framework.pageobjects.bars.BurgerMenu;
 import org.complete.framework.pageobjects.bars.Footer;
 import org.complete.framework.pageobjects.bars.Header;
+import org.complete.framework.pageobjects.checkout.CartPage;
+import org.complete.framework.pageobjects.checkout.StepOnePage;
 import org.complete.framework.pageobjects.credentials.LoginPage;
 import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
+import org.complete.framework.pageobjects.shopping.ItemDetailPage;
 import org.openqa.selenium.WebDriver;
 
 public class CommonFlows {
@@ -33,6 +37,27 @@ public class CommonFlows {
         footer.waitPageToLoad();
     }
 
+    public void addSingleItemToCart(ItemModel item) {
+        var homeShoppingPage = new HomeShoppingPage(driver);
+        var itemDetailPage = new ItemDetailPage(driver);
+
+        homeShoppingPage.goToItemDetail(item.getItemName());
+        itemDetailPage.waitPageToLoad();
+        itemDetailPage.verifyCorrectItemDisplay(item.getItemName(), item.getPrice());
+        itemDetailPage.verifyPage();
+        itemDetailPage.clickingOnAddItemToCart();
+        itemDetailPage.clickOnBackToProducts();
+        homeShoppingPage.waitPageToLoad();
+    }
+
+    public void addItemsToCart() {
+        var listItem = new DataProviders().itemsDataProvider();
+
+        for (ItemModel item: listItem) {
+            addSingleItemToCart(item);
+        }
+    }
+
     public void openMenuBurger() {
         var header = new Header(driver);
         var burgerMenu = new BurgerMenu(driver);
@@ -47,5 +72,16 @@ public class CommonFlows {
 
         footer.verifyPage();
         header.verifyPage();
+    }
+
+    public void addItemsAndGoToStepOne() {
+        var cartPage = new CartPage(driver);
+        var stepOnePage = new StepOnePage(driver);
+        var header = new Header(driver);
+        addItemsToCart();
+        header.clickOnCheckoutCart();
+        cartPage.waitPageToLoad();
+        cartPage.clickOnContinueCheckout();
+        stepOnePage.waitPageToLoad();
     }
 }

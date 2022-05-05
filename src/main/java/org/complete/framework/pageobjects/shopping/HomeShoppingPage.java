@@ -13,6 +13,10 @@ public class HomeShoppingPage extends BasePage {
     private final By allNames = By.className("inventory_item_name");
     private final By robotImage = By.className("peek");
     private final By inventoryContainer = By.id("inventory_container");
+    private By getItemDivByName(String name) {
+        var xpath = String.format("//div[text()='%s']", name);
+        return By.xpath(xpath);
+    }
 
     public HomeShoppingPage(WebDriver driver) {
         super(driver);
@@ -91,5 +95,11 @@ public class HomeShoppingPage extends BasePage {
             log.info("Verifying item name order is descendant: ZA");
             Assert.assertTrue(firstItem.compareToIgnoreCase(lastItem) > 0);
         }
+    }
+
+    @Step("Going to item detail with name {0}")
+    public void goToItemDetail(String itemName) {
+        log.info("Going to item detail with name " + itemName);
+        click(getItemDivByName(itemName));
     }
 }

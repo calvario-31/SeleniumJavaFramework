@@ -1,21 +1,26 @@
 package org.complete.framework.checkout;
 
 import org.complete.framework.BaseTest;
+import org.complete.framework.models.ItemModel;
+import org.complete.framework.pageobjects.bars.Header;
 import org.complete.framework.pageobjects.checkout.CartPage;
 import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
 import org.complete.framework.utilities.DataProviders;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.complete.framework.utilities.DataProviders.SINGLE_ITEM_DP;
-
 public class CartTests extends BaseTest {
     private CartPage cartPage;
     private HomeShoppingPage homeShoppingPage;
+    private Header header;
+    private final ItemModel itemToAdd = new DataProviders().getSingleItem();
 
     @BeforeMethod
     public void setUp() {
         commonFlows.loginValidUser();
+        commonFlows.addSingleItemToCart(itemToAdd);
+        header.clickOnCheckoutCart();
+        cartPage.waitPageToLoad();
     }
 
     @Test (groups = {SMOKE})
@@ -24,14 +29,14 @@ public class CartTests extends BaseTest {
         commonFlows.verifyFooterHeader();
     }
 
-    @Test (groups = {SMOKE}, dataProvider = SINGLE_ITEM_DP, dataProviderClass = DataProviders.class)
-    public void verifyCartItemsTest(double price, String name, int quantity) {
-        cartPage.verifyItemContents(price, name, quantity);
+    @Test (groups = {SMOKE})
+    public void verifyCartItemsTest() {
+        cartPage.verifyItemContents(itemToAdd.getPrice(), itemToAdd.getItemName());
     }
 
     @Test (groups = {SMOKE})
     public void returnToShoppingTest() {
-        cartPage.clickOnContinueCheckout();
+        cartPage.clickOnContinueShopping();
         homeShoppingPage.waitPageToLoad();
         homeShoppingPage.verifyPage();
     }
@@ -46,5 +51,6 @@ public class CartTests extends BaseTest {
     protected void initPages() {
         cartPage = new CartPage(driver);
         homeShoppingPage = new HomeShoppingPage(driver);
+        header = new Header(driver);
     }
 }
