@@ -1,6 +1,6 @@
 package org.complete.framework.bars;
 
-import org.complete.framework.BaseTest;
+import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.pageobjects.bars.BurgerMenu;
 import org.complete.framework.pageobjects.credentials.LoginPage;
 import org.complete.framework.utilities.DataProviders;

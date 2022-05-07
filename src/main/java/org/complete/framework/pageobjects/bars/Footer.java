@@ -2,7 +2,7 @@ package org.complete.framework.pageobjects.bars;
 
 import io.qameta.allure.Step;
 import org.complete.framework.models.UrlModel;
-import org.complete.framework.pageobjects.BasePage;
+import org.complete.framework.utilities.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

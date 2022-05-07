@@ -1,6 +1,9 @@
 package org.complete.framework.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -35,5 +38,11 @@ public class DriverManager {
     public WebDriver buildRemoteDriver() {
         //TODO
         return null;
+    }
+
+    @Attachment(value = "Screenshot failure", type = "image/png")
+    public byte[] getScreenshot(WebDriver driver) {
+        logs.info("Taking screenshot");
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

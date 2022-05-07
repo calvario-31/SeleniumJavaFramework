@@ -1,4 +1,4 @@
-package org.complete.framework.pageobjects;
+package org.complete.framework.utilities.base;
 
 import org.complete.framework.utilities.Logs;
 import org.openqa.selenium.*;

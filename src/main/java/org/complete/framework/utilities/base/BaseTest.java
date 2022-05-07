@@ -1,4 +1,4 @@
-package org.complete.framework;
+package org.complete.framework.utilities.base;
 
 import org.complete.framework.utilities.CommonFlows;
 import org.complete.framework.utilities.DriverManager;
@@ -17,6 +17,10 @@ public abstract class BaseTest {
     protected static final String SMOKE = "Smoke";
     private final boolean runOnServer = System.getenv("JOB_NAME") != null;
     private DriverManager driverManager;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     private void initDriver() {
         driverManager = new DriverManager();

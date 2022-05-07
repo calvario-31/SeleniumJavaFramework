@@ -1,6 +1,6 @@
 package org.complete.framework.credentials;
 
-import org.complete.framework.BaseTest;
+import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.pageobjects.credentials.LoginPage;
 import org.complete.framework.utilities.DataProviders;
 import org.testng.annotations.Test;

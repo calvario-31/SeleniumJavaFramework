@@ -1,6 +1,6 @@
 package org.complete.framework.pageobjects.checkout;
 
-import org.complete.framework.pageobjects.BasePage;
+import org.complete.framework.utilities.base.BasePage;
 import org.openqa.selenium.WebDriver;
 
 //TODO

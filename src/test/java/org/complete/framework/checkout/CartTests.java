@@ -1,6 +1,6 @@
 package org.complete.framework.checkout;
 
-import org.complete.framework.BaseTest;
+import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.models.ItemModel;
 import org.complete.framework.pageobjects.bars.Header;
 import org.complete.framework.pageobjects.checkout.CartPage;
