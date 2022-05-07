@@ -1,26 +1,22 @@
 package org.complete.framework.checkout;
 
-import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.models.ItemModel;
-import org.complete.framework.pageobjects.bars.Header;
 import org.complete.framework.pageobjects.checkout.CartPage;
 import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
 import org.complete.framework.utilities.DataProviders;
+import org.complete.framework.utilities.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
     private CartPage cartPage;
     private HomeShoppingPage homeShoppingPage;
-    private Header header;
-    private final ItemModel itemToAdd = new DataProviders().getSingleItem();
+    private final ItemModel item = new DataProviders().getSingleItem();
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
-        commonFlows.addSingleItemToCart(itemToAdd);
-        header.clickOnCheckoutCart();
-        cartPage.waitPageToLoad();
+        commonFlows.addItemsAndGoToCart(item);
     }
 
     @Test (groups = {SMOKE})
@@ -31,7 +27,7 @@ public class CartTests extends BaseTest {
 
     @Test (groups = {SMOKE})
     public void verifyCartItemsTest() {
-        cartPage.verifyItemContents(itemToAdd.getPrice(), itemToAdd.getItemName());
+        cartPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
 
     @Test (groups = {SMOKE})
@@ -51,6 +47,5 @@ public class CartTests extends BaseTest {
     protected void initPages() {
         cartPage = new CartPage(driver);
         homeShoppingPage = new HomeShoppingPage(driver);
-        header = new Header(driver);
     }
 }

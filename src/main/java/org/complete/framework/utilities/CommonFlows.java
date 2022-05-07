@@ -1,11 +1,14 @@
 package org.complete.framework.utilities;
 
 import org.complete.framework.models.ItemModel;
+import org.complete.framework.models.PersonalInformationModel;
 import org.complete.framework.pageobjects.bars.BurgerMenu;
 import org.complete.framework.pageobjects.bars.Footer;
 import org.complete.framework.pageobjects.bars.Header;
 import org.complete.framework.pageobjects.checkout.CartPage;
 import org.complete.framework.pageobjects.checkout.StepOnePage;
+import org.complete.framework.pageobjects.checkout.StepTwoPage;
+import org.complete.framework.pageobjects.checkout.SuccessPage;
 import org.complete.framework.pageobjects.credentials.LoginPage;
 import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
 import org.complete.framework.pageobjects.shopping.ItemDetailPage;
@@ -74,14 +77,38 @@ public class CommonFlows {
         header.verifyPage();
     }
 
-    public void addItemsAndGoToStepOne() {
+    public void addItemsAndGoToCart(ItemModel item) {
         var cartPage = new CartPage(driver);
-        var stepOnePage = new StepOnePage(driver);
         var header = new Header(driver);
-        addItemsToCart();
+
+        addSingleItemToCart(item);
         header.clickOnCheckoutCart();
         cartPage.waitPageToLoad();
+    }
+
+    public void addItemsAndGoToStepOne(ItemModel item) {
+        var cartPage = new CartPage(driver);
+        var stepOnePage = new StepOnePage(driver);
+        addItemsAndGoToCart(item);
         cartPage.clickOnContinueCheckout();
         stepOnePage.waitPageToLoad();
+    }
+
+    public void addItemsAndGoToStepTwo(ItemModel item) {
+        var stepOnePage = new StepOnePage(driver);
+        var stepTwoPage = new StepTwoPage(driver);
+        var personalInfo = new PersonalInformationModel();
+        addItemsAndGoToStepOne(item);
+        stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(), personalInfo.getZipCode());
+        stepTwoPage.waitPageToLoad();
+    }
+
+    public void addItemsFinishShopping(ItemModel item) {
+        var stepTwoPage = new StepTwoPage(driver);
+        var successPage = new SuccessPage(driver);
+
+        addItemsAndGoToStepTwo(item);
+        stepTwoPage.clickOnFinish();
+        successPage.waitPageToLoad();
     }
 }

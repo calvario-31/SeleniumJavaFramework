@@ -1,5 +1,6 @@
 package org.complete.framework.checkout;
 
+import org.complete.framework.models.ItemModel;
 import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.pageobjects.checkout.CartPage;
 import org.complete.framework.pageobjects.checkout.StepOnePage;
@@ -15,11 +16,12 @@ public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
     private StepTwoPage stepTwoPage;
     private CartPage cartPage;
+    private final ItemModel item = new DataProviders().getSingleItem();
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
         commonFlows.loginValidUser();
-        commonFlows.addItemsAndGoToStepOne();
+        commonFlows.addItemsAndGoToStepOne(item);
     }
 
     @Test(groups = {SMOKE})

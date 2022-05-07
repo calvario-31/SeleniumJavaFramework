@@ -39,7 +39,7 @@ public class CartPage extends BasePage {
     }
 
     @Step("Verify item contents")
-    public void verifyItemContents(double price, String name) {
+    public void verifyItemContents(String name, double price) {
         log.info("Verifying item row are displayed");
         softAssert.assertTrue(verifyIsDisplayed(itemQuantity), "quantity label is displayed");
         softAssert.assertTrue(verifyIsDisplayed(itemName), "description label is displayed");
