@@ -6,6 +6,10 @@ import org.apache.logging.log4j.Logger;
 public class Logs {
     private final Logger log;
 
+    public Logs() {
+        log = LogManager.getLogger("AUTOMATION");
+    }
+
     private void printSeparator() {
         log.info("------------------------------------------------------------------------------------------");
     }
@@ -14,24 +18,16 @@ public class Logs {
         log.info("");
     }
 
-    public Logs() {
-        log = LogManager.getLogger("AUTOMATION");
-    }
-
     public void startTest(String testName) {
-        System.out.println();
         printSeparator();
         log.info("Test: " + testName);
         printSeparator();
-        System.out.print(testName);
     }
 
     public void endTest(String status) {
         printSeparator();
         log.info(status);
         printSeparator();
-        System.out.println("\t" + status);
-        System.out.println();
         printNewLine();
         printNewLine();
     }
