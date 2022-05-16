@@ -25,7 +25,9 @@ public class TestListeners implements ITestListener {
     public void onTestFailure(ITestResult result) {
         log.endTest("FAILED");
         var driver = getDriverFromResult(result);
-        new DriverManager().getScreenshot(driver);
+        var driverManager = new DriverManager();
+        driverManager.getScreenshot(driver, result.getName());
+        driverManager.getAllureScreenshot(driver);
     }
 
     @Override

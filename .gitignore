@@ -1,4 +1,5 @@
 .idea
 /target
 /src/test/resources/logs/**
+/src/test/resources/screenshots/**
 **.DS_Store
