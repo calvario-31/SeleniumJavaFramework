@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DriverManager {
+    private static final String SCREENSHOTS_FOLDER = "src/test/resources/screenshots";
     private final Logs logs = new Logs();
     private String browserName;
 
@@ -45,10 +46,11 @@ public class DriverManager {
     }
 
     public void getScreenshot(WebDriver driver, String screenshotName) {
-        logs.info("Taking manual screenshot");
+        logs.debug("Taking manual screenshot");
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String path = String.format("src/test/resources/screenshots/%s.png", screenshotName);
+        String path = String.format("%s/%s.png", SCREENSHOTS_FOLDER, screenshotName);
         try {
+
             FileUtils.copyFile(screenshotFile , new File(path));
         } catch (IOException io) {
             logs.error("Failed copy screenshot");
@@ -58,7 +60,17 @@ public class DriverManager {
 
     @Attachment(value = "Screenshot failure", type = "image/png")
     public byte[] getAllureScreenshot(WebDriver driver) {
-        logs.info("Taking screenshot");
+        logs.debug("Taking screenshot");
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public void deleteScreenshotFolder() {
+        try {
+            logs.debug("Deleting screenshots directory");
+            FileUtils.deleteDirectory(new File(SCREENSHOTS_FOLDER));
+        } catch (IOException io) {
+            logs.error("Failed copy screenshot");
+            logs.error(io.getLocalizedMessage());
+        }
     }
 }
