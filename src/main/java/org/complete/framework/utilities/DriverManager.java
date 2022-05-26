@@ -13,9 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class DriverManager {
+    private static final String SCREENSHOTS_FOLDER = "src/test/resources/screenshots";
     private final Logs logs = new Logs();
     private String browserName;
-    private static final String SCREENSHOTS_FOLDER = "src/test/resources/screenshots";
 
     public WebDriver buildLocalDriver() {
         browserName = System.getProperty("browser");
