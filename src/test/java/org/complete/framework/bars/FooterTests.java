@@ -1,15 +1,10 @@
 package org.complete.framework.bars;
 
-import org.complete.framework.utilities.base.BaseTest;
-import org.complete.framework.models.UrlModel;
 import org.complete.framework.pageobjects.bars.Footer;
 import org.complete.framework.utilities.DataProviders;
+import org.complete.framework.utilities.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Map;
-
-import static org.complete.framework.utilities.DataProviders.SOCIAL_MEDIA_URL_DP;
 
 public class FooterTests extends BaseTest {
     private Footer footer;
@@ -24,9 +19,10 @@ public class FooterTests extends BaseTest {
         footer.verifyPage();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = SOCIAL_MEDIA_URL_DP, dataProviderClass = DataProviders.class)
-    public void verifySocialMediaLinksTest(Map<String, UrlModel> urlMap) {
-        footer.verifySocialMediaLinks(urlMap);
+    @Test(groups = {REGRESSION})
+    public void verifySocialMediaLinksTest() {
+        var socialMediaMap = new DataProviders().getSocialMediaMap();
+        footer.verifySocialMediaLinks(socialMediaMap);
     }
 
     @Override

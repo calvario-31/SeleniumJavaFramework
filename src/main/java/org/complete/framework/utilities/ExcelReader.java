@@ -14,22 +14,22 @@ public class ExcelReader {
     private final Logs log = new Logs();
 
     public List<CredentialModel> getCredentialsModelList() {
-        log.info("Reading credentials from: " + EXCEL_PATH);
+        log.debug("Reading credentials from: " + EXCEL_PATH);
         return Poiji.fromExcel(new File(EXCEL_PATH), CredentialModel.class);
     }
 
     public List<UrlModel> getUrlModelList() {
-        log.info("Reading url list from: " + EXCEL_PATH);
+        log.debug("Reading url list from: " + EXCEL_PATH);
         return Poiji.fromExcel(new File(EXCEL_PATH), UrlModel.class);
     }
 
     public List<ItemModel> getItemList() {
-        log.info("Reading item list from: " + EXCEL_PATH);
+        log.debug("Reading item list from: " + EXCEL_PATH);
         return Poiji.fromExcel(new File(EXCEL_PATH), ItemModel.class);
     }
 
     public List<ErrorMessageModel> getErrorMessageList() {
-        log.info("Reading error messages from: " + EXCEL_PATH);
+        log.debug("Reading error messages from: " + EXCEL_PATH);
         return Poiji.fromExcel(new File(EXCEL_PATH), ErrorMessageModel.class);
     }
 }

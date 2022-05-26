@@ -1,11 +1,9 @@
 package org.complete.framework.credentials;
 
-import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.pageobjects.credentials.LoginPage;
 import org.complete.framework.utilities.DataProviders;
+import org.complete.framework.utilities.base.BaseTest;
 import org.testng.annotations.Test;
-
-import static org.complete.framework.utilities.DataProviders.INVALID_CREDENTIALS_DP;
 
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;
@@ -20,9 +18,10 @@ public class LoginTests extends BaseTest {
         commonFlows.loginValidUser();
     }
 
-    @Test(groups = {SMOKE}, dataProvider = INVALID_CREDENTIALS_DP, dataProviderClass = DataProviders.class)
-    public void invalidCredentialsTest(String username, String password) {
-        loginPage.fillCredentials(username, password);
+    @Test(groups = {SMOKE})
+    public void invalidCredentialsTest() {
+        var badCredentials = new DataProviders().getInvalidCredentials();
+        loginPage.fillCredentials(badCredentials.getUsername(), badCredentials.getPassword());
         loginPage.verifyLockedMessageIsDisplayed();
     }
 

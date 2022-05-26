@@ -21,7 +21,7 @@ public class DriverManager {
         browserName = System.getProperty("browser");
 
         if (browserName == null) {
-            logs.info("Setting default local browser to CHROME");
+            logs.debug("Setting default local browser to CHROME");
             browserName = "CHROME";
         }
 
@@ -46,7 +46,7 @@ public class DriverManager {
     }
 
     public void getScreenshot(WebDriver driver, String screenshotName) {
-        logs.debug("Taking manual screenshot");
+        logs.debug("Taking screenshot");
         var screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         var path = String.format("%s/%s.png", SCREENSHOTS_FOLDER, screenshotName);
         try {
@@ -59,7 +59,7 @@ public class DriverManager {
 
     @Attachment(value = "Screenshot failure", type = "image/png")
     public byte[] getAllureScreenshot(WebDriver driver) {
-        logs.info("Taking screenshot");
+        logs.debug("Taking allure screenshot");
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 

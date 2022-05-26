@@ -7,8 +7,11 @@ import org.complete.framework.models.UrlModel;
 
 import java.util.HashMap;
 
-public class DataParsers {
+public class MapParsers {
+    private final Logs log = new Logs();
+
     public HashMap<String, CredentialModel> getCredentialsMap() {
+        log.debug("Creating credentials map");
         var credentialsList = new ExcelReader().getCredentialsModelList();
         var hashMap = new HashMap<String, CredentialModel>();
         for (CredentialModel credentials : credentialsList) {
@@ -18,6 +21,7 @@ public class DataParsers {
     }
 
     public HashMap<String, UrlModel> getUrlsMap() {
+        log.debug("Creating urls map");
         var urlModelList = new ExcelReader().getUrlModelList();
         var hashMap = new HashMap<String, UrlModel>();
         for (UrlModel url : urlModelList) {
@@ -27,6 +31,7 @@ public class DataParsers {
     }
 
     public HashMap<String, ItemModel> getItemsMap() {
+        log.debug("Creating items map");
         var itemModelList = new ExcelReader().getItemList();
         var hashMap = new HashMap<String, ItemModel>();
         for (ItemModel item : itemModelList) {
@@ -35,7 +40,8 @@ public class DataParsers {
         return hashMap;
     }
 
-    public HashMap<String, ErrorMessageModel> getErrorMessageMap() {
+    public HashMap<String, ErrorMessageModel> getErrorMessagesMap() {
+        log.debug("Creating errors message map");
         var itemModelList = new ExcelReader().getErrorMessageList();
         var hashMap = new HashMap<String, ErrorMessageModel>();
         for (ErrorMessageModel errorMessage : itemModelList) {

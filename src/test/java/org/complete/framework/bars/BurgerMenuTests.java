@@ -7,8 +7,6 @@ import org.complete.framework.utilities.DataProviders;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.complete.framework.utilities.DataProviders.SAUCE_LABS_URL_DP;
-
 public class BurgerMenuTests extends BaseTest {
     private BurgerMenu burgerMenu;
     private LoginPage loginPage;
@@ -24,9 +22,10 @@ public class BurgerMenuTests extends BaseTest {
         burgerMenu.verifyPage();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = SAUCE_LABS_URL_DP, dataProviderClass = DataProviders.class)
-    public void verifyAboutLinkTest(String url) {
-        burgerMenu.verifyAboutLink(url);
+    @Test(groups = {REGRESSION})
+    public void verifyAboutLinkTest() {
+        var sauceLabsUrl = new DataProviders().getSauceLabsUrl();
+        burgerMenu.verifyAboutLink(sauceLabsUrl);
     }
 
     @Test(groups = {SMOKE})

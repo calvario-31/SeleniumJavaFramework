@@ -1,16 +1,15 @@
 package org.complete.framework.checkout;
 
 import org.complete.framework.models.ItemModel;
-import org.complete.framework.utilities.base.BaseTest;
 import org.complete.framework.pageobjects.checkout.CartPage;
 import org.complete.framework.pageobjects.checkout.StepOnePage;
 import org.complete.framework.pageobjects.checkout.StepTwoPage;
 import org.complete.framework.utilities.DataProviders;
+import org.complete.framework.utilities.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.complete.framework.utilities.DataProviders.BAD_PERSONAL_INFO_DP;
-import static org.complete.framework.utilities.DataProviders.PERSONAL_INFO_DP;
 
 public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
@@ -29,9 +28,11 @@ public class StepOneTests extends BaseTest {
         stepOnePage.verifyPage();
     }
 
-    @Test(groups = {SMOKE}, dataProvider = PERSONAL_INFO_DP, dataProviderClass = DataProviders.class)
-    public void validDataTest(String firstName, String lastName, String zipCode) {
-        stepOnePage.fillForm(firstName, lastName, zipCode);
+    @Test(groups = {SMOKE})
+    public void validDataTest() {
+        var personalInfo = new DataProviders().getPersonalInfo();
+        stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(),
+                personalInfo.getZipCode());
         stepTwoPage.waitPageToLoad();
     }
 
