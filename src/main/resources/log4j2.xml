@@ -8,17 +8,12 @@
         <File name="logsDebug" fileName="src/test/resources/logs/debugLogs.log" append="false">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
-
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </Console>
     </appenders>
 
     <loggers>
         <root level="debug">
             <appender-ref ref="logsInfo" level="info"/>
             <appender-ref ref="logsDebug" level="debug"/>
-            <appender-ref ref="Console" level="info"/>
         </root>
     </loggers>
 </configuration>
