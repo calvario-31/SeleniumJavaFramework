@@ -3,13 +3,13 @@
 To run with command line:
 
 ```sh
-mvn clean test -DsuiteXmlFile=src/test/resources/suites/${suiteName} -Dbrowser=${browserName}
+mvn clean test -DsuiteName=${suiteName} -Dbrowser=${browserName}
 ```
 
 Example:
 
 ```sh
-mvn clean test -DsuiteXmlFile=src/test/resources/suites/smoke.xml -Dbrowser=EDGE
+mvn clean test -DsuiteName=regression -Dbrowser=EDGE
 ```
 
 If browser parameter is not passed it will run on CHROME
