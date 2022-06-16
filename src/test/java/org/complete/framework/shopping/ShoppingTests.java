@@ -1,9 +1,9 @@
 package org.complete.framework.shopping;
 
-import org.complete.framework.utilities.base.BaseTest;
-import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
+import base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.shopping.HomeShoppingPage;
 
 public class ShoppingTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;

@@ -1,10 +1,10 @@
 package org.complete.framework.bars;
 
-import org.complete.framework.pageobjects.bars.Footer;
-import org.complete.framework.utilities.DataProviders;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.bars.Footer;
+import utilities.DataProviders;
 
 public class FooterTests extends BaseTest {
     private Footer footer;

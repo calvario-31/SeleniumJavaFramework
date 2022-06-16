@@ -8,8 +8,8 @@
     </groups>
 
     <listeners>
-        <listener class-name="org.complete.framework.utilities.listeners.TestListeners"/>
-        <listener class-name="org.complete.framework.utilities.listeners.SuiteListeners"/>
+        <listener class-name="utilities.listeners.TestListeners"/>
+        <listener class-name="utilities.listeners.SuiteListeners"/>
     </listeners>
 
     <test name="credentials">

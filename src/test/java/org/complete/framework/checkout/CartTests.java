@@ -1,12 +1,12 @@
 package org.complete.framework.checkout;
 
-import org.complete.framework.models.ItemModel;
-import org.complete.framework.pageobjects.checkout.CartPage;
-import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
-import org.complete.framework.utilities.DataProviders;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
+import models.ItemModel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.checkout.CartPage;
+import pageobjects.shopping.HomeShoppingPage;
+import utilities.DataProviders;
 
 public class CartTests extends BaseTest {
     private CartPage cartPage;
@@ -19,25 +19,25 @@ public class CartTests extends BaseTest {
         commonFlows.addItemsAndGoToCart(item);
     }
 
-    @Test (groups = {SMOKE})
+    @Test(groups = {SMOKE})
     public void verifyCartTest() {
         cartPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 
-    @Test (groups = {SMOKE})
+    @Test(groups = {SMOKE})
     public void verifyCartItemsTest() {
         cartPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
 
-    @Test (groups = {SMOKE})
+    @Test(groups = {SMOKE})
     public void returnToShoppingTest() {
         cartPage.clickOnContinueShopping();
         homeShoppingPage.waitPageToLoad();
         homeShoppingPage.verifyPage();
     }
 
-    @Test (groups = {REGRESSION})
+    @Test(groups = {REGRESSION})
     public void removeItemFromListTest() {
         cartPage.clickOnRemoveItem();
         cartPage.verifyListIsEmpty();

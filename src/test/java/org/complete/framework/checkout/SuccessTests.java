@@ -1,12 +1,12 @@
 package org.complete.framework.checkout;
 
-import org.complete.framework.models.ItemModel;
-import org.complete.framework.pageobjects.checkout.SuccessPage;
-import org.complete.framework.pageobjects.shopping.HomeShoppingPage;
-import org.complete.framework.utilities.DataProviders;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
+import models.ItemModel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.checkout.SuccessPage;
+import pageobjects.shopping.HomeShoppingPage;
+import utilities.DataProviders;
 
 public class SuccessTests extends BaseTest {
     private SuccessPage successPage;

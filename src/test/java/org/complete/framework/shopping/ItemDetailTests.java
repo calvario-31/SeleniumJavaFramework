@@ -1,9 +1,9 @@
 package org.complete.framework.shopping;
 
-import org.complete.framework.utilities.base.BaseTest;
-import org.complete.framework.utilities.DataProviders;
+import base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utilities.DataProviders;
 
 public class ItemDetailTests extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
@@ -11,7 +11,7 @@ public class ItemDetailTests extends BaseTest {
         commonFlows.loginValidUser();
     }
 
-    @Test (groups = {SMOKE})
+    @Test(groups = {SMOKE})
     public void verifyItemDetailTest() {
         var item = new DataProviders().getSingleItem();
         commonFlows.addSingleItemToCart(item);

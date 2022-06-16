@@ -1,9 +1,9 @@
 package org.complete.framework.credentials;
 
-import org.complete.framework.pageobjects.credentials.LoginPage;
-import org.complete.framework.utilities.DataProviders;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
 import org.testng.annotations.Test;
+import pageobjects.credentials.LoginPage;
+import utilities.DataProviders;
 
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;

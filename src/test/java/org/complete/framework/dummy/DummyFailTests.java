@@ -1,8 +1,8 @@
 package org.complete.framework.dummy;
 
-import org.complete.framework.pageobjects.checkout.SuccessPage;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
 import org.testng.annotations.Test;
+import pageobjects.checkout.SuccessPage;
 
 public class DummyFailTests extends BaseTest {
     private SuccessPage successPage;

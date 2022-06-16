@@ -1,15 +1,15 @@
 package org.complete.framework.checkout;
 
-import org.complete.framework.models.ItemModel;
-import org.complete.framework.pageobjects.checkout.CartPage;
-import org.complete.framework.pageobjects.checkout.StepOnePage;
-import org.complete.framework.pageobjects.checkout.StepTwoPage;
-import org.complete.framework.utilities.DataProviders;
-import org.complete.framework.utilities.base.BaseTest;
+import base.BaseTest;
+import models.ItemModel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.checkout.CartPage;
+import pageobjects.checkout.StepOnePage;
+import pageobjects.checkout.StepTwoPage;
+import utilities.DataProviders;
 
-import static org.complete.framework.utilities.DataProviders.BAD_PERSONAL_INFO_DP;
+import static utilities.DataProviders.BAD_PERSONAL_INFO_DP;
 
 public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
