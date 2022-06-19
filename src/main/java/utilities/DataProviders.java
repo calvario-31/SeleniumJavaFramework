@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataProviders {
     private final Logs log = new Logs();
-    public final static String BAD_PERSONAL_INFO_DP = "bad credentials";
+    public static final String BAD_PERSONAL_INFO_DP = "bad credentials";
 
     public CredentialModel getInvalidCredentials() {
         log.debug("Creating invalid credentials");
