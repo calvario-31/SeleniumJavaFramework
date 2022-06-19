@@ -11,25 +11,23 @@ import java.time.Duration;
 import java.util.List;
 
 public abstract class BasePage {
-    protected WebDriver driver;
-    private WebDriverWait wait;
-    protected SoftAssert softAssert;
-    protected Logs log = new Logs();
-    public final String mainUrl = "https://www.saucedemo.com";
-
-    private void initWait(int timeOut) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-    }
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+    private final String mainUrl = "https://www.saucedemo.com";
+    private final int defaultTimeout = 5;
+    protected final SoftAssert softAssert;
+    protected final Logs log = new Logs();
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
         softAssert = new SoftAssert();
-        initWait(5);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(defaultTimeout));
     }
 
     protected BasePage(WebDriver driver, int timeOut) {
-        this(driver);
-        initWait(timeOut);
+        this.driver = driver;
+        softAssert = new SoftAssert();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
     }
 
     protected WebElement findElement(By locator) {

@@ -10,26 +10,26 @@ import java.io.File;
 import java.util.List;
 
 public class ExcelReader {
-    private final String EXCEL_PATH = "src/test/resources/data/testData.xlsx";
+    private final String excelPath = "src/test/resources/data/testData.xlsx";
     private final Logs log = new Logs();
 
     public List<CredentialModel> getCredentialsModelList() {
-        log.debug("Reading credentials from: " + EXCEL_PATH);
-        return Poiji.fromExcel(new File(EXCEL_PATH), CredentialModel.class);
+        log.debug("Reading credentials from: " + excelPath);
+        return Poiji.fromExcel(new File(excelPath), CredentialModel.class);
     }
 
     public List<UrlModel> getUrlModelList() {
-        log.debug("Reading url list from: " + EXCEL_PATH);
-        return Poiji.fromExcel(new File(EXCEL_PATH), UrlModel.class);
+        log.debug("Reading url list from: " + excelPath);
+        return Poiji.fromExcel(new File(excelPath), UrlModel.class);
     }
 
     public List<ItemModel> getItemList() {
-        log.debug("Reading item list from: " + EXCEL_PATH);
-        return Poiji.fromExcel(new File(EXCEL_PATH), ItemModel.class);
+        log.debug("Reading item list from: " + excelPath);
+        return Poiji.fromExcel(new File(excelPath), ItemModel.class);
     }
 
     public List<ErrorMessageModel> getErrorMessageList() {
-        log.debug("Reading error messages from: " + EXCEL_PATH);
-        return Poiji.fromExcel(new File(EXCEL_PATH), ErrorMessageModel.class);
+        log.debug("Reading error messages from: " + excelPath);
+        return Poiji.fromExcel(new File(excelPath), ErrorMessageModel.class);
     }
 }

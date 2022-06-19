@@ -39,7 +39,7 @@
 
         <property name="basedir" value="${basedir}"/>
     -->
-    <property name="severity" value="error"/>
+    <property name="severity" value="warning"/>
 
     <property name="fileExtensions" value="java, properties, xml"/>
 
@@ -73,6 +73,7 @@
     <module name="FileLength"/>
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
+        <property name="max" value="120"/>
     </module>
 
     <!-- Checks for whitespace                               -->
@@ -156,7 +157,10 @@
         <!-- See https://checkstyle.org/config_coding.html -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField">
+            <property name="ignoreSetter" value="true"/>
+            <property name="ignoreConstructorParameter" value="true"/>
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
@@ -170,12 +174,13 @@
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See https://checkstyle.org/config_misc.html -->
         <module name="ArrayTypeStyle"/>
-        <module name="FinalParameters"/>
         <module name="TodoComment"/>
         <module name="UpperEll"/>
 

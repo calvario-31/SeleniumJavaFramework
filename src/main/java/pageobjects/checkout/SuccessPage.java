@@ -8,8 +8,9 @@ import org.openqa.selenium.WebDriver;
 public class SuccessPage extends BasePage {
     private final By backToHomeButton = By.id("back-to-products");
     private final By successTitleLabel = By.xpath("//h2[text()='THANK YOU FOR YOUR ORDER']");
-    private final By successDescriptionLabel = By.xpath("//div[text()='Your order has been dispatched, and will arrive just as fast as the pony can get there!']");
     private final By ponyImage = By.className("pony_express");
+    private final By successDescriptionLabel =
+            By.xpath("//div[contains(text(), 'Your order has been dispatched')]");
 
     public SuccessPage(WebDriver driver) {
         super(driver);
