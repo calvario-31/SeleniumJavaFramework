@@ -16,7 +16,6 @@ public abstract class BaseTest {
     private final boolean runOnServer = System.getenv("JOB_NAME") != null;
     private final Logs log = new Logs();
     private WebDriver driver;
-    private DriverManager driverManager;
     protected CommonFlows commonFlows;
     protected static final String REGRESSION = "Regression";
     protected static final String SMOKE = "Smoke";
@@ -26,7 +25,7 @@ public abstract class BaseTest {
     }
 
     private void initDriver() {
-        driverManager = new DriverManager();
+        var driverManager = new DriverManager();
 
         if (runOnServer) {
             driver = driverManager.buildRemoteDriver();
