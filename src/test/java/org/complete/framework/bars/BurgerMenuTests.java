@@ -1,11 +1,12 @@
 package org.complete.framework.bars;
 
 import base.BaseTest;
+import data.DataProviders;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.BurgerMenu;
 import pageobjects.credentials.LoginPage;
-import utilities.DataProviders;
 
 public class BurgerMenuTests extends BaseTest {
     private BurgerMenu burgerMenu;
@@ -36,7 +37,7 @@ public class BurgerMenuTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         burgerMenu = new BurgerMenu(driver);
         loginPage = new LoginPage(driver);
     }

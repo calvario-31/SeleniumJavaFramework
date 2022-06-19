@@ -1,12 +1,13 @@
 package org.complete.framework.checkout;
 
 import base.BaseTest;
+import data.DataProviders;
 import models.ItemModel;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.CartPage;
 import pageobjects.shopping.HomeShoppingPage;
-import utilities.DataProviders;
 
 public class CartTests extends BaseTest {
     private CartPage cartPage;
@@ -44,7 +45,7 @@ public class CartTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         cartPage = new CartPage(driver);
         homeShoppingPage = new HomeShoppingPage(driver);
     }

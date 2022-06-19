@@ -5,13 +5,25 @@ import org.apache.logging.log4j.Logger;
 
 public class Logs {
     private final Logger log;
+    private final String tag = "AUTOMATION";
+    private final String bigSeparator =
+            "------------------------------------------------------------------------------------------";
+    private final String smallSeparator = "**********************************************************";
 
     public Logs() {
-        log = LogManager.getLogger("AUTOMATION");
+        log = LogManager.getLogger(tag);
+    }
+
+    private void printTestSeparator() {
+        log.info(bigSeparator);
     }
 
     private void printSeparator() {
-        log.info("------------------------------------------------------------------------------------------");
+        log.info(smallSeparator);
+    }
+
+    private void printSeparatorDebug() {
+        log.debug(smallSeparator);
     }
 
     private void printNewLine() {
@@ -19,27 +31,49 @@ public class Logs {
     }
 
     public void startTest(String testName) {
-        printSeparator();
+        printTestSeparator();
         log.info("Test: " + testName);
-        printSeparator();
+        printTestSeparator();
     }
 
     public void endTest(String status) {
-        printSeparator();
+        printTestSeparator();
         log.info(status);
-        printSeparator();
+        printTestSeparator();
         printNewLine();
         printNewLine();
     }
 
     public void startSuite(String suiteName) {
         printNewLine();
-        printSeparator();
-        printSeparator();
-        log.info("Beginning: " + suiteName);
-        printSeparator();
-        printSeparator();
+        printTestSeparator();
+        printTestSeparator();
+        log.info("Suite: " + suiteName);
+        printTestSeparator();
+        printTestSeparator();
         printNewLine();
+    }
+
+    public void preconditionStart() {
+        printSeparator();
+        log.info("Preconditions");
+        printSeparator();
+    }
+
+    public void postConditionStart() {
+        printSeparatorDebug();
+        log.debug("Post conditions");
+        printSeparatorDebug();
+    }
+
+    public void postConditionFinish() {
+        printSeparatorDebug();
+    }
+
+    public void testSteps() {
+        printSeparator();
+        log.info("Test steps:");
+        printSeparator();
     }
 
     public void info(String message) {

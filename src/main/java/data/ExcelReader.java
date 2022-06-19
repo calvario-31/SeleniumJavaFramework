@@ -1,10 +1,11 @@
-package utilities;
+package data;
 
 import com.poiji.bind.Poiji;
 import models.CredentialModel;
 import models.ErrorMessageModel;
 import models.ItemModel;
 import models.UrlModel;
+import utilities.Logs;
 
 import java.io.File;
 import java.util.List;

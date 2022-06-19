@@ -1,6 +1,7 @@
 package org.complete.framework.shopping;
 
 import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.shopping.HomeShoppingPage;
@@ -43,7 +44,7 @@ public class ShoppingTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         homeShoppingPage = new HomeShoppingPage(driver);
     }
 }

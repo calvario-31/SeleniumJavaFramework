@@ -1,15 +1,16 @@
 package org.complete.framework.checkout;
 
 import base.BaseTest;
+import data.DataProviders;
 import models.ItemModel;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.CartPage;
 import pageobjects.checkout.StepOnePage;
 import pageobjects.checkout.StepTwoPage;
-import utilities.DataProviders;
 
-import static utilities.DataProviders.BAD_PERSONAL_INFO_DP;
+import static data.DataProviders.BAD_PERSONAL_INFO_DP;
 
 public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
@@ -50,7 +51,7 @@ public class StepOneTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         stepOnePage = new StepOnePage(driver);
         stepTwoPage = new StepTwoPage(driver);
         cartPage = new CartPage(driver);

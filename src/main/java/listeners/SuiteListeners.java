@@ -1,4 +1,4 @@
-package utilities.listeners;
+package listeners;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;

@@ -1,6 +1,7 @@
 package org.complete.framework.bars;
 
 import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.Header;
@@ -19,7 +20,7 @@ public class HeaderTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         header = new Header(driver);
     }
 }

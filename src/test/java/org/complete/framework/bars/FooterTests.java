@@ -1,10 +1,11 @@
 package org.complete.framework.bars;
 
 import base.BaseTest;
+import data.DataProviders;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.Footer;
-import utilities.DataProviders;
 
 public class FooterTests extends BaseTest {
     private Footer footer;
@@ -26,7 +27,7 @@ public class FooterTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         footer = new Footer(driver);
     }
 }

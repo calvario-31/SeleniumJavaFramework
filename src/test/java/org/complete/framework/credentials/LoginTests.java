@@ -1,9 +1,10 @@
 package org.complete.framework.credentials;
 
 import base.BaseTest;
+import data.DataProviders;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.credentials.LoginPage;
-import utilities.DataProviders;
 
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;
@@ -26,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver driver) {
         loginPage = new LoginPage(driver);
     }
 }
