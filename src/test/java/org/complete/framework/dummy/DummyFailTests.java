@@ -1,6 +1,7 @@
 package org.complete.framework.dummy;
 
 import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.checkout.SuccessPage;
 
@@ -19,7 +20,7 @@ public class DummyFailTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
-        successPage = new SuccessPage(driver);
+    protected void initPages(WebDriver webDriver) {
+        successPage = new SuccessPage(webDriver);
     }
 }

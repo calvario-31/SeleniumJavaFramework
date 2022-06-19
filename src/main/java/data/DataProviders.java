@@ -1,10 +1,11 @@
-package utilities;
+package data;
 
 import models.CredentialModel;
 import models.ItemModel;
 import models.PersonalInformationModel;
 import models.UrlModel;
 import org.testng.annotations.DataProvider;
+import utilities.Logs;
 
 import java.util.HashMap;
 import java.util.List;

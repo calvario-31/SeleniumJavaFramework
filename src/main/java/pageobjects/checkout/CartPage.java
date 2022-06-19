@@ -79,6 +79,6 @@ public class CartPage extends BasePage {
     @Step("Verifying list is empty")
     public void verifyListIsEmpty() {
         log.info("Verifying list is empty");
-        Assert.assertTrue(verifyIsNotDisplayed(cartItemRow));
+        Assert.assertFalse(verifyIsDisplayed(cartItemRow));
     }
 }

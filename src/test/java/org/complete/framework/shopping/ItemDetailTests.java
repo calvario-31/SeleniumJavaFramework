@@ -1,9 +1,10 @@
 package org.complete.framework.shopping;
 
 import base.BaseTest;
+import data.DataProviders;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import utilities.DataProviders;
 
 public class ItemDetailTests extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
@@ -18,6 +19,6 @@ public class ItemDetailTests extends BaseTest {
     }
 
     @Override
-    protected void initPages() {
+    protected void initPages(WebDriver webDriver) {
     }
 }

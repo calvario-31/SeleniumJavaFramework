@@ -1,8 +1,6 @@
 package base;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,51 +60,21 @@ public abstract class BasePage {
         return findElement(locator).getText();
     }
 
-    protected void waitForVisibility(By locator) {
+    protected void waitWebElementVisibility(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    protected void waitForInvisibility(By locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    protected void waitForClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
     protected boolean verifyIsDisplayed(By locator) {
-        try {
-            waitForVisibility(locator);
-            return true;
-        } catch (NoSuchElementException | StaleElementReferenceException exception) {
-            exception.printStackTrace();
-            return false;
-        }
-    }
-
-    protected boolean verifyIsNotDisplayed(By locator) {
-        try {
-            waitForInvisibility(locator);
-            return true;
-        } catch (NoSuchElementException | StaleElementReferenceException exception) {
-            exception.printStackTrace();
-            return false;
-        }
+        return findElement(locator).isDisplayed();
     }
 
     protected boolean verifyIsClickable(By locator) {
-        try {
-            waitForClickable(locator);
-            return true;
-        } catch (NoSuchElementException | StaleElementReferenceException exception) {
-            exception.printStackTrace();
-            return false;
-        }
+        return findElement(locator).isEnabled();
     }
 
     protected void waitPage(By locator, String pageName) {
         log.info("Waiting " + pageName + " to load");
-        waitForVisibility(locator);
+        waitWebElementVisibility(locator);
         log.info(pageName + " loaded successfully");
     }
 

@@ -8,8 +8,9 @@
     </groups>
 
     <listeners>
-        <listener class-name="utilities.listeners.TestListeners"/>
-        <listener class-name="utilities.listeners.SuiteListeners"/>
+        <listener class-name="listeners.TestListeners"/>
+        <listener class-name="listeners.SuiteListeners"/>
+        <listener class-name="listeners.InvokeMethodListeners"/>
     </listeners>
 
     <test name="credentials">

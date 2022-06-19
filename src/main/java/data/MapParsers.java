@@ -1,9 +1,10 @@
-package utilities;
+package data;
 
 import models.CredentialModel;
 import models.ErrorMessageModel;
 import models.ItemModel;
 import models.UrlModel;
+import utilities.Logs;
 
 import java.util.HashMap;
 

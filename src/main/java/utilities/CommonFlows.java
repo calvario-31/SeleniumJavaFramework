@@ -1,5 +1,6 @@
 package utilities;
 
+import data.DataProviders;
 import models.ItemModel;
 import models.PersonalInformationModel;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package utilities.listeners;
+package listeners;
 
 import base.BaseTest;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,7 @@ public class TestListeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        log.startTest(result.getName());
+        log.testSteps();
     }
 
     @Override
