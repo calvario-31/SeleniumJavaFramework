@@ -51,9 +51,9 @@ public class StepOneTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        stepOnePage = new StepOnePage(driver);
-        stepTwoPage = new StepTwoPage(driver);
-        cartPage = new CartPage(driver);
+    protected void initPages(WebDriver webDriver) {
+        stepOnePage = new StepOnePage(webDriver);
+        stepTwoPage = new StepTwoPage(webDriver);
+        cartPage = new CartPage(webDriver);
     }
 }

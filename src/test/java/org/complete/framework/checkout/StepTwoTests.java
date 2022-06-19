@@ -40,8 +40,8 @@ public class StepTwoTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        homeShoppingPage = new HomeShoppingPage(driver);
-        stepTwoPage = new StepTwoPage(driver);
+    protected void initPages(WebDriver webDriver) {
+        homeShoppingPage = new HomeShoppingPage(webDriver);
+        stepTwoPage = new StepTwoPage(webDriver);
     }
 }

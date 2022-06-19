@@ -20,7 +20,7 @@ public class HeaderTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        header = new Header(driver);
+    protected void initPages(WebDriver webDriver) {
+        header = new Header(webDriver);
     }
 }

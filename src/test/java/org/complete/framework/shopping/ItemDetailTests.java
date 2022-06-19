@@ -19,6 +19,6 @@ public class ItemDetailTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
+    protected void initPages(WebDriver webDriver) {
     }
 }

@@ -20,7 +20,7 @@ public class DummyFailTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        successPage = new SuccessPage(driver);
+    protected void initPages(WebDriver webDriver) {
+        successPage = new SuccessPage(webDriver);
     }
 }

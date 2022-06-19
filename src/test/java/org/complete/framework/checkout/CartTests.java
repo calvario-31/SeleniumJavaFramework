@@ -45,8 +45,8 @@ public class CartTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        cartPage = new CartPage(driver);
-        homeShoppingPage = new HomeShoppingPage(driver);
+    protected void initPages(WebDriver webDriver) {
+        cartPage = new CartPage(webDriver);
+        homeShoppingPage = new HomeShoppingPage(webDriver);
     }
 }

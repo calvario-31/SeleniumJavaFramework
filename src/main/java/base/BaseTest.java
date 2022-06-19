@@ -18,8 +18,8 @@ public abstract class BaseTest {
     private WebDriver driver;
     private DriverManager driverManager;
     protected CommonFlows commonFlows;
-    static protected final String REGRESSION = "Regression";
-    static protected final String SMOKE = "Smoke";
+    protected static final String REGRESSION = "Regression";
+    protected static final String SMOKE = "Smoke";
 
     public WebDriver getDriver() {
         return driver;
@@ -56,5 +56,5 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    protected abstract void initPages(WebDriver driver);
+    protected abstract void initPages(WebDriver webDriver);
 }
