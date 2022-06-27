@@ -13,6 +13,7 @@ import java.util.List;
 public class DataProviders {
     private final Logs log = new Logs();
     public static final String BAD_PERSONAL_INFO_DP = "bad credentials";
+    public static final String ITEM_LIST_DP = "item list";
 
     public CredentialModel getInvalidCredentials() {
         log.debug("Creating invalid credentials");
@@ -75,5 +76,27 @@ public class DataProviders {
                 {firstname, blank, zipcode, errorMessageLastName},
                 {firstname, lastname, blank, errorMessageZipCode}
         };
+    }
+
+    @DataProvider(name = ITEM_LIST_DP)
+    public Object[][] itemListDP() {
+        log.debug("Creating item list data provider");
+        var itemList = new ExcelReader().getItemList();
+        var listLength = itemList.size();
+
+        var object = new Object[listLength][];
+
+        for (var i = 0; i < listLength; i++) {
+            var currentItem = itemList.get(i);
+            object[i] =
+                    new Object[]{
+                            currentItem.getItemName(),
+                            currentItem.getPrice(),
+                            currentItem.getItemId(),
+                            currentItem.getQuantity()
+                    };
+        }
+
+        return object;
     }
 }
