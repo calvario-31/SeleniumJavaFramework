@@ -14,30 +14,30 @@ public class ShoppingTests extends BaseTest {
         commonFlows.loginValidUser();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyPageTest() {
         homeShoppingPage.verifyPage();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void comboBoxNameFilterDescendantTest() {
         homeShoppingPage.filterByName(false);
         homeShoppingPage.verifyItemNameOrder(false);
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void comboBoxNameFilterAscendantTest() {
         homeShoppingPage.filterByName(true);
         homeShoppingPage.verifyItemNameOrder(true);
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void comboBoxPriceFilterDescendantTest() {
         homeShoppingPage.filterByPrice(false);
         homeShoppingPage.verifyItemPriceOrder(false);
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void comboBoxPriceFilterAscendantTest() {
         homeShoppingPage.filterByPrice(true);
         homeShoppingPage.verifyItemPriceOrder(true);

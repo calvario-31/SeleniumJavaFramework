@@ -7,37 +7,61 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import java.io.File;
 import java.io.IOException;
 
 public class DriverManager {
+    protected final Logs log = new Logs();
     private final String screenshotPath = "src/test/resources/screenshots";
     private final Logs logs = new Logs();
     private String browserName;
+    private Boolean headlessMode = true;
+    protected WebDriver driver;
+    private static WebDriver staticDriver;
 
     public WebDriver buildLocalDriver() {
         browserName = System.getProperty("browser");
+        var headlessString = System.getProperty("headlessMode");
 
         if (browserName == null) {
             logs.debug("Setting default local browser to CHROME");
             browserName = "CHROME";
         }
 
+        if (headlessString == null) { //headless string is not passed then is false
+            logs.debug("Setting headless mode OFF");
+            headlessMode = false;
+        }
+
+        log.debug("Initializing the driver");
         switch (browserName) {
             case "CHROME":
-                logs.debug("Starting chrome driver");
+                log.debug("Chrome driver");
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
+                var chromeOptions = new ChromeOptions().setHeadless(headlessMode);
+                driver = new ChromeDriver(chromeOptions);
+                break;
             case "EDGE":
-                logs.debug("Starting edge driver");
+                log.debug("Edge driver");
                 WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
-            default:
-                logs.debug(browserName + " not supported");
-                return null;
+                var edgeOptions = new EdgeOptions().setHeadless(headlessMode);
+                driver = new EdgeDriver(edgeOptions);
+                break;
         }
+
+        log.debug("Maximizing window");
+        driver.manage().window().maximize();
+
+        log.debug("Deleting cookies");
+        driver.manage().deleteAllCookies();
+
+        staticDriver = driver;
+
+        return driver;
     }
 
     public WebDriver buildRemoteDriver() {
@@ -58,9 +82,8 @@ public class DriverManager {
     }
 
     @Attachment(value = "Screenshot failure", type = "image/png")
-    public byte[] getAllureScreenshot(WebDriver driver) {
-        logs.debug("Taking allure screenshot");
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public static byte[] getAllureScreenshot() {
+        return ((TakesScreenshot) staticDriver).getScreenshotAs(OutputType.BYTES);
     }
 
     public void deleteScreenshotsFolder() {

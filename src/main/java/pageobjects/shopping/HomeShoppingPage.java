@@ -5,18 +5,20 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import webElements.list.$$;
+import webElements.single.$;
 
 public class HomeShoppingPage extends BasePage {
-    private final By title = By.className("title");
-    private final By filterSelect = By.cssSelector("select[data-test='product_sort_container']");
-    private final By allPrices = By.className("inventory_item_price");
-    private final By allNames = By.className("inventory_item_name");
-    private final By robotImage = By.className("peek");
-    private final By inventoryContainer = By.id("inventory_container");
+    private final $ title = $(By.className("title"));
+    private final $ filterSelect = $(By.cssSelector("select[data-test='product_sort_container']"));
+    private final $$ allPrices = $$(By.className("inventory_item_price"));
+    private final $$ allNames = $$(By.className("inventory_item_name"));
+    private final $ robotImage = $(By.className("peek"));
+    private final $ inventoryContainer = $(By.id("inventory_container"));
 
-    private By getItemDivByName(String name) {
+    private $ getItemDivByName(String name) {
         var xpath = String.format("//div[text()='%s']", name);
-        return By.xpath(xpath);
+        return $(By.xpath(xpath));
     }
 
     public HomeShoppingPage(WebDriver driver) {
@@ -33,45 +35,41 @@ public class HomeShoppingPage extends BasePage {
     @Step("Verifying home shopping page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
-        softAssert.assertTrue(verifyIsDisplayed(title), "title is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(filterSelect), "filter select is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(robotImage), "robot image is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(inventoryContainer), "inventory container is displayed");
+        softAssert.assertTrue(title.isDisplayed(), "title is displayed");
+        softAssert.assertTrue(filterSelect.isDisplayed(), "filter select is displayed");
+        softAssert.assertTrue(robotImage.isDisplayed(), "robot image is displayed");
+        softAssert.assertTrue(inventoryContainer.isDisplayed(), "inventory container is displayed");
         softAssert.assertAll();
     }
 
     @Step("Filtering by name")
     public void filterByName(boolean isAscendant) {
-        var select = getSelect(filterSelect);
         if (isAscendant) {
             log.info("Filter by name ascendant: AZ");
-            select.selectByValue("az");
+            filterSelect.selectByValue("az");
         } else {
             log.info("Filter by name descendant: ZA");
-            select.selectByValue("za");
+            filterSelect.selectByValue("za");
         }
     }
 
     @Step("Filtering by price")
     public void filterByPrice(boolean isAscendant) {
-        var select = getSelect(filterSelect);
         if (isAscendant) {
             log.info("Filter by price ascendant: low -> high");
-            select.selectByValue("lohi");
+            filterSelect.selectByValue("lohi");
         } else {
             log.info("Filter by price descendant: high -> low");
-            select.selectByValue("hilo");
+            filterSelect.selectByValue("hilo");
         }
     }
 
     @Step("Verifying item price order")
     public void verifyItemPriceOrder(boolean isAscendant) {
-        var listElements = findAllElements(allPrices);
-
         var firstItem =
-                Double.parseDouble(listElements.get(0).getText().substring(1));
+                Double.parseDouble(allPrices.getFirst().getText().substring(1));
         var lastItem =
-                Double.parseDouble(listElements.get(listElements.size() - 1).getText().substring(1));
+                Double.parseDouble(allPrices.getLast().getText().substring(1));
 
         if (isAscendant) {
             log.info("Verifying item price order is ascendant: low -> high");
@@ -84,10 +82,8 @@ public class HomeShoppingPage extends BasePage {
 
     @Step("Verifying item name order")
     public void verifyItemNameOrder(boolean isAscendant) {
-        var listElements = findAllElements(allNames);
-
-        var firstItem = listElements.get(0).getText();
-        var lastItem = listElements.get(listElements.size() - 1).getText();
+        var firstItem = allNames.getFirst().getText();
+        var lastItem = allNames.getLast().getText();
 
         if (isAscendant) {
             log.info("Verifying item name order is ascendant: AZ");
@@ -101,6 +97,6 @@ public class HomeShoppingPage extends BasePage {
     @Step("Going to item detail with name {0}")
     public void goToItemDetail(String itemName) {
         log.info("Going to item detail with name " + itemName);
-        click(getItemDivByName(itemName));
+        getItemDivByName(itemName).click();
     }
 }

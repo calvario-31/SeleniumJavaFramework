@@ -15,12 +15,12 @@ public class FooterTests extends BaseTest {
         commonFlows.loginValidUser();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyFooterTest() {
         footer.verifyPage();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void verifySocialMediaLinksTest() {
         var socialMediaMap = new DataProviders().getSocialMediaMap();
         footer.verifySocialMediaLinks(socialMediaMap);

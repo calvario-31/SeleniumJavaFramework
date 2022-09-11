@@ -2,11 +2,11 @@
 <configuration status="WARN">
     <appenders>
         <File name="logsInfo" fileName="src/test/resources/logs/informativeLogs.log" append="false">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
         </File>
 
         <File name="logsDebug" fileName="src/test/resources/logs/debugLogs.log" append="false">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
         </File>
     </appenders>
 

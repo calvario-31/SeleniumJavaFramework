@@ -1,5 +1,6 @@
 package base;
 
+import data.DataProviders;
 import listeners.InvokeMethodListeners;
 import listeners.SuiteListeners;
 import listeners.TestListeners;
@@ -17,12 +18,9 @@ public abstract class BaseTest {
     private final Logs log = new Logs();
     private WebDriver driver;
     protected CommonFlows commonFlows;
-    protected static final String REGRESSION = "Regression";
-    protected static final String SMOKE = "Smoke";
-
-    public WebDriver getDriver() {
-        return driver;
-    }
+    protected final String regression = "Regression";
+    protected final String smoke = "Smoke";
+    protected final DataProviders dataProviders = new DataProviders();
 
     private void initDriver() {
         var driverManager = new DriverManager();
@@ -32,16 +30,12 @@ public abstract class BaseTest {
         } else {
             driver = driverManager.buildLocalDriver();
         }
-
-        log.debug("Deleting cookies");
-        driver.manage().deleteAllCookies();
-
-        log.debug("Maximizing window");
-        driver.manage().window().maximize();
     }
 
     @BeforeMethod(alwaysRun = true, description = "setting up the driver and going to index")
     protected void setupDriver() {
+        System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.StdErrLog");
+        System.setProperty("org.eclipse.jetty.LEVEL", "OFF");
         initDriver();
         commonFlows = new CommonFlows(driver);
 
@@ -53,6 +47,10 @@ public abstract class BaseTest {
     protected void teardownDriver() {
         log.debug("Killing the driver");
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 
     protected abstract void initPages(WebDriver webDriver);

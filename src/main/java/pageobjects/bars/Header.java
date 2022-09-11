@@ -4,11 +4,12 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import webElements.single.$;
 
 public class Header extends BasePage {
-    private final By appLogo = By.className("app_logo");
-    private final By cartButton = By.className("shopping_cart_link");
-    private final By burgerMenuButton = By.id("react-burger-menu-btn");
+    private final $ appLogo = $(By.className("app_logo"));
+    private final $ cartButton = $(By.className("shopping_cart_link"));
+    private final $ burgerMenuButton = $(By.id("react-burger-menu-btn"));
 
     public Header(WebDriver driver) {
         super(driver);
@@ -24,21 +25,21 @@ public class Header extends BasePage {
     @Step("Verifying header")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
-        softAssert.assertTrue(verifyIsDisplayed(appLogo), "app logo is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(cartButton), "cart button is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(burgerMenuButton), "burger menu button is displayed");
+        softAssert.assertTrue(appLogo.isDisplayed(), "app logo is displayed");
+        softAssert.assertTrue(cartButton.isDisplayed(), "cart button is displayed");
+        softAssert.assertTrue(burgerMenuButton.isDisplayed(), "burger menu button is displayed");
         softAssert.assertAll();
     }
 
     @Step("Opening burger menu")
     public void openBurgerMenu() {
         log.info("Opening burger menu");
-        click(burgerMenuButton);
+        burgerMenuButton.click();
     }
 
     @Step("Clicking on checkout cart")
     public void clickOnCheckoutCart() {
         log.info("Clicking on checkout cart");
-        click(cartButton);
+        cartButton.click();
     }
 }

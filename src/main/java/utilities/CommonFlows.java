@@ -45,6 +45,7 @@ public class CommonFlows {
         var homeShoppingPage = new HomeShoppingPage(driver);
         var itemDetailPage = new ItemDetailPage(driver);
 
+        loginValidUser();
         homeShoppingPage.goToItemDetail(item.getItemName());
         itemDetailPage.waitPageToLoad();
         itemDetailPage.verifyCorrectItemDisplay(item.getItemName(), item.getPrice());
@@ -52,6 +53,15 @@ public class CommonFlows {
         itemDetailPage.clickingOnAddItemToCart();
         itemDetailPage.clickOnBackToProducts();
         homeShoppingPage.waitPageToLoad();
+    }
+
+    public void goToItemDetail(ItemModel item) {
+        var homeShoppingPage = new HomeShoppingPage(driver);
+        var itemDetailPage = new ItemDetailPage(driver);
+
+        loginValidUser();
+        homeShoppingPage.goToItemDetail(item.getItemName());
+        itemDetailPage.waitPageToLoad();
     }
 
     public void addItemsToCart() {
@@ -66,6 +76,7 @@ public class CommonFlows {
         var header = new Header(driver);
         var burgerMenu = new BurgerMenu(driver);
 
+        loginValidUser();
         header.openBurgerMenu();
         burgerMenu.waitPageToLoad();
     }

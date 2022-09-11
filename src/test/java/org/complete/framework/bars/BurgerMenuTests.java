@@ -14,22 +14,21 @@ public class BurgerMenuTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
         commonFlows.openMenuBurger();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyContentsTest() {
         burgerMenu.verifyPage();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void verifyAboutLinkTest() {
         var sauceLabsUrl = new DataProviders().getSauceLabsUrl();
         burgerMenu.verifyAboutLink(sauceLabsUrl);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void logoutTest() {
         burgerMenu.clickOnLogout();
         loginPage.waitPageToLoad();

@@ -4,13 +4,13 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import webElements.single.$;
 
 public class BurgerMenu extends BasePage {
-    private final By itemList = By.className("bm-item-list");
-    private final By allItemsOption = By.id("inventory_sidebar_link");
-    private final By aboutOption = By.id("about_sidebar_link");
-    private final By logoutOption = By.id("logout_sidebar_link");
+    private final $ itemList = $(By.className("bm-item-list"));
+    private final $ allItemsOption = $(By.id("inventory_sidebar_link"));
+    private final $ aboutOption = $(By.id("about_sidebar_link"));
+    private final $ logoutOption = $(By.id("logout_sidebar_link"));
 
     public BurgerMenu(WebDriver driver) {
         super(driver);
@@ -26,32 +26,29 @@ public class BurgerMenu extends BasePage {
     @Step("Verifying burger menu page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
-        softAssert.assertTrue(verifyIsDisplayed(itemList), "item is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(allItemsOption), "all items option is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(aboutOption), "about option is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(logoutOption), "logout option is displayed");
+        softAssert.assertTrue(itemList.isDisplayed(), "item is displayed");
+        softAssert.assertTrue(allItemsOption.isDisplayed(), "all items option is displayed");
+        softAssert.assertTrue(aboutOption.isDisplayed(), "about option is displayed");
+        softAssert.assertTrue(logoutOption.isDisplayed(), "logout option is displayed");
         softAssert.assertAll();
     }
 
     @Step("Verifying about link")
     public void verifyAboutLink(String expectedLink) {
-        var actualLink = getHref(aboutOption);
-        log.info("Verifying about link");
-        Assert.assertEquals(actualLink, expectedLink);
-
-        log.info("Verifying option is clickable");
-        Assert.assertTrue(verifyIsClickable(aboutOption));
+        softAssert.assertEquals(aboutOption.getHref(), expectedLink);
+        softAssert.assertTrue(aboutOption.isEnabled());
+        softAssert.assertAll();
     }
 
     @Step("Clicking on logout option")
     public void clickOnLogout() {
         log.info("Clicking on logout option");
-        click(logoutOption);
+        logoutOption.click();
     }
 
     @Step("Clicking on all items option")
     public void clickOnAllItems() {
         log.info("Clicking on all items option");
-        click(allItemsOption);
+        allItemsOption.click();
     }
 }

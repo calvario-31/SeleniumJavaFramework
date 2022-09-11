@@ -4,15 +4,15 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import webElements.single.$;
 
 public class StepOnePage extends BasePage {
-    private final By firstNameInput = By.id("first-name");
-    private final By lastNameInput = By.id("last-name");
-    private final By zipCodeInput = By.id("postal-code");
-    private final By continueButton = By.id("continue");
-    private final By cancelButton = By.id("cancel");
-    private final By errorMessage = By.cssSelector("h3[data-test='error']");
+    private final $ firstNameInput = $(By.id("first-name"));
+    private final $ lastNameInput = $(By.id("last-name"));
+    private final $ zipCodeInput = $(By.id("postal-code"));
+    private final $ continueButton = $(By.id("continue"));
+    private final $ cancelButton = $(By.id("cancel"));
+    private final $ errorMessage = $(By.cssSelector("h3[data-test='error']"));
 
     public StepOnePage(WebDriver driver) {
         super(driver);
@@ -28,42 +28,40 @@ public class StepOnePage extends BasePage {
     @Step("Verifying Step One Page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
-        softAssert.assertTrue(verifyIsDisplayed(firstNameInput), "firstname input is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(lastNameInput), "lastname input is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(zipCodeInput), "zipcode input is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(continueButton), "continue button is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(cancelButton), "cancel button is displayed");
+        softAssert.assertTrue(firstNameInput.isDisplayed(), "firstname input is displayed");
+        softAssert.assertTrue(lastNameInput.isDisplayed(), "lastname input is displayed");
+        softAssert.assertTrue(zipCodeInput.isDisplayed(), "zipcode input is displayed");
+        softAssert.assertTrue(continueButton.isDisplayed(), "continue button is displayed");
+        softAssert.assertTrue(cancelButton.isDisplayed(), "cancel button is displayed");
         softAssert.assertAll();
     }
 
     @Step("Filling step one form")
     public void fillForm(String firstName, String lastName, String zipCode) {
         log.info("Filling firstname");
-        typeText(firstNameInput, firstName);
+        firstNameInput.sendKeys(firstName);
 
         log.info("Filling lastname");
-        typeText(lastNameInput, lastName);
+        lastNameInput.sendKeys(lastName);
 
         log.info("Filling zipcode");
-        typeText(zipCodeInput, zipCode);
+        zipCodeInput.sendKeys(zipCode);
 
         log.info("Clicking on continue");
-        click(continueButton);
+        continueButton.click();
     }
 
     @Step("Click on cancel button")
     public void clickOnCancelButton() {
         log.info("Clicking on cancel button");
-        click(cancelButton);
+        cancelButton.click();
     }
 
-    @Step("Verifying error message")
+    @Step("Verifying error message is correct")
     public void verifyErrorMessage(String text) {
-        log.info("Verifying error message is displayed");
-        verifyIsDisplayed(errorMessage);
-
         log.info("Verifying error message is correct");
-        var textUI = getText(errorMessage);
-        Assert.assertEquals(textUI, text);
+        softAssert.assertTrue(errorMessage.isDisplayed());
+        softAssert.assertEquals(errorMessage.getText(), text);
+        softAssert.assertAll();
     }
 }

@@ -20,16 +20,15 @@ public class StepOneTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
         commonFlows.addItemsAndGoToStepOne(item);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyStepOnePageTest() {
         stepOnePage.verifyPage();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void validDataTest() {
         var personalInfo = new DataProviders().getPersonalInfo();
         stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(),
@@ -37,14 +36,14 @@ public class StepOneTests extends BaseTest {
         stepTwoPage.waitPageToLoad();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void clickOnCancelReturnsCartPage() {
         stepOnePage.clickOnCancelButton();
         cartPage.waitPageToLoad();
         cartPage.verifyPage();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = BAD_PERSONAL_INFO_DP, dataProviderClass = DataProviders.class)
+    @Test(groups = {regression}, dataProvider = BAD_PERSONAL_INFO_DP, dataProviderClass = DataProviders.class)
     public void invalidDataTest(String firstName, String lastName, String zipCode, String errorMessage) {
         stepOnePage.fillForm(firstName, lastName, zipCode);
         stepOnePage.verifyErrorMessage(errorMessage);

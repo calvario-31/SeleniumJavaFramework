@@ -2,22 +2,26 @@
 
 To run with command line:
 
-```sh
-mvn clean test -DsuiteName=${suiteName} -Dbrowser=${browserName}
-```
+Only first time:
 
-Example:
+Give run permission:
 
 ```sh
-mvn clean test -DsuiteName=regression -Dbrowser=EDGE
+chmod 777 runSuite.sh
 ```
+
+Run the suite:
+
+```sh
+./runSuite.sh
+```
+
+We can edit runSuite.sh to run regression also
 
 If browser parameter is not passed it will run on CHROME
 
-To do a static analysis and show the report:
-
 ```sh
-mvn clean checkstyle:checkstyle site
+./mvnw clean checkstyle:checkstyle site
 ```
 
 URL:

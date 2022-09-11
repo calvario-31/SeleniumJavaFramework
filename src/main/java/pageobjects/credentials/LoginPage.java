@@ -5,13 +5,14 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import webElements.single.$;
 
 public class LoginPage extends BasePage {
-    private final By emailInput = By.id("user-name");
-    private final By passwordInput = By.id("password");
-    private final By buttonLogin = By.id("login-button");
-    private final By loginLogo = By.className("login_logo");
-    private final By errorMessage = By.cssSelector("h3[data-test='error']");
+    private final $ emailInput = $(By.id("user-name"));
+    private final $ passwordInput = $(By.id("password"));
+    private final $ buttonLogin = $(By.id("login-button"));
+    private final $ loginLogo = $(By.className("login_logo"));
+    private final $ errorMessage = $(By.cssSelector("h3[data-test='error']"));
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -27,25 +28,27 @@ public class LoginPage extends BasePage {
     @Step("Verifying login page")
     public void verifyPage() {
         log.info("Verifying " + this.getClass().getSimpleName());
-        softAssert.assertTrue(verifyIsDisplayed(loginLogo), "login logo is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(emailInput), "email input is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(passwordInput), "password input is displayed");
-        softAssert.assertTrue(verifyIsDisplayed(buttonLogin), "button login is displayed");
+        softAssert.assertTrue(loginLogo.isDisplayed(), "login logo is displayed");
+        softAssert.assertTrue(emailInput.isDisplayed(), "email input is displayed");
+        softAssert.assertTrue(passwordInput.isDisplayed(), "password input is displayed");
+        softAssert.assertTrue(buttonLogin.isDisplayed(), "button login is displayed");
         softAssert.assertAll();
     }
 
     @Step("Filling credentials")
     public void fillCredentials(String username, String password) {
         log.info("Filling username input");
-        typeText(emailInput, username);
+        emailInput.sendKeys(username);
+
         log.info("Filling password input");
-        typeText(passwordInput, password);
+        passwordInput.sendKeys(password);
+
         log.info("Clicking on button login");
-        click(buttonLogin);
+        buttonLogin.click();
     }
 
     @Step("Verifying locked message is displayed")
     public void verifyLockedMessageIsDisplayed() {
-        Assert.assertTrue(verifyIsDisplayed(errorMessage));
+        Assert.assertTrue(errorMessage.isDisplayed());
     }
 }

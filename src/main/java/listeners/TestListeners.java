@@ -27,7 +27,6 @@ public class TestListeners implements ITestListener {
         var driver = getDriverFromResult(result);
         var driverManager = new DriverManager();
         driverManager.getScreenshot(driver, result.getName());
-        driverManager.getAllureScreenshot(driver);
     }
 
     @Override

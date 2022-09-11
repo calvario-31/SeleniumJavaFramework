@@ -56,13 +56,13 @@ public class Logs {
 
     public void preconditionStart() {
         printSeparator();
-        log.info("Preconditions");
+        log.info("SETUP");
         printSeparator();
     }
 
     public void postConditionStart() {
         printSeparatorDebug();
-        log.debug("Post conditions");
+        log.debug("TEARDOWN");
         printSeparatorDebug();
     }
 
@@ -72,7 +72,7 @@ public class Logs {
 
     public void testSteps() {
         printSeparator();
-        log.info("Test steps:");
+        log.info("TEST");
         printSeparator();
     }
 

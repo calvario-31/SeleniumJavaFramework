@@ -1,24 +1,29 @@
 package org.complete.framework.shopping;
 
 import base.BaseTest;
-import data.DataProviders;
+import models.ItemModel;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.shopping.ItemDetailPage;
 
 public class ItemDetailTests extends BaseTest {
+    private ItemDetailPage itemDetailPage;
+    private final ItemModel item = dataProviders.getSingleItem();
+
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
+        commonFlows.goToItemDetail(item);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyItemDetailTest() {
-        var item = new DataProviders().getSingleItem();
-        commonFlows.addSingleItemToCart(item);
+        itemDetailPage.verifyPage();
+        itemDetailPage.verifyCorrectItemDisplay(item.getItemName(), item.getPrice());
     }
 
     @Override
     protected void initPages(WebDriver webDriver) {
+        itemDetailPage = new ItemDetailPage(webDriver);
     }
 }

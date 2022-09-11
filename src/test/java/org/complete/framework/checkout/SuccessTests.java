@@ -16,17 +16,16 @@ public class SuccessTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
         commonFlows.addItemsFinishShopping(item);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifySuccessPageTest() {
         successPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void verifyBackHomeTest() {
         successPage.clickOnBackToHome();
         homeShoppingPage.waitPageToLoad();

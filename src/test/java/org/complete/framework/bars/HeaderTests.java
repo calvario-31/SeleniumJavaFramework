@@ -14,7 +14,7 @@ public class HeaderTests extends BaseTest {
         commonFlows.loginValidUser();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyHeaderTest() {
         header.verifyPage();
     }

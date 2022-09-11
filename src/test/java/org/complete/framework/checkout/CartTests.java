@@ -16,29 +16,28 @@ public class CartTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
         commonFlows.addItemsAndGoToCart(item);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyCartTest() {
         cartPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyCartItemsTest() {
         cartPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void returnToShoppingTest() {
         cartPage.clickOnContinueShopping();
         homeShoppingPage.waitPageToLoad();
         homeShoppingPage.verifyPage();
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void removeItemFromListTest() {
         cartPage.clickOnRemoveItem();
         cartPage.verifyListIsEmpty();

@@ -16,22 +16,21 @@ public class StepTwoTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {
-        commonFlows.loginValidUser();
         commonFlows.addItemsAndGoToStepTwo(item);
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyStepTwoTest() {
         stepTwoPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyItemContentsTest() {
         stepTwoPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
 
-    @Test(groups = {REGRESSION})
+    @Test(groups = {regression})
     public void verifyReturnToStepOne() {
         stepTwoPage.clickOnCancel();
         homeShoppingPage.waitPageToLoad();

@@ -9,17 +9,17 @@ import pageobjects.credentials.LoginPage;
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void verifyLoginPageTest() {
         loginPage.verifyPage();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void loginTest() {
         commonFlows.loginValidUser();
     }
 
-    @Test(groups = {SMOKE})
+    @Test(groups = {smoke})
     public void invalidCredentialsTest() {
         var badCredentials = new DataProviders().getInvalidCredentials();
         loginPage.fillCredentials(badCredentials.getUsername(), badCredentials.getPassword());
