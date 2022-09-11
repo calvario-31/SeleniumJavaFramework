@@ -1,4 +1,4 @@
-package org.complete.framework.shopping;
+package shopping;
 
 import base.BaseTest;
 import models.ItemModel;

@@ -1,4 +1,4 @@
-package org.complete.framework.dummy;
+package dummy;
 
 import base.BaseTest;
 import data.DataProviders;

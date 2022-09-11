@@ -1,4 +1,4 @@
-package org.complete.framework.bars;
+package bars;
 
 import base.BaseTest;
 import org.openqa.selenium.WebDriver;

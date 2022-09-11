@@ -1,4 +1,4 @@
-package org.complete.framework.credentials;
+package credentials;
 
 import base.BaseTest;
 import data.DataProviders;

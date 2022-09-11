@@ -1,4 +1,4 @@
-package org.complete.framework.checkout;
+package checkout;
 
 import base.BaseTest;
 import data.DataProviders;
