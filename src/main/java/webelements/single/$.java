@@ -1,4 +1,4 @@
-package webElements.single;
+package webelements.single;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,22 +9,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static base.BasePage.DEFAULT_TIME_OUT;
+
 public class $ implements IActions, IAttributes, IVerifications, ISelects, IWaits {
     private WebElement webElement;
     private By locator;
     private final WebDriver driver;
     private WebDriverWait wait;
     private boolean searchForElement = true;
+    private final int timeOut;
 
-    public $(By locator, WebDriver driver) {
+    public $(By locator, WebDriver driver, int timeOut) {
         this.locator = locator;
         this.driver = driver;
+        this.timeOut = timeOut;
     }
 
-    public $(WebElement webElement, WebDriver driver) {
+    public $(WebElement webElement, WebDriver driver) { //init from list
         this.webElement = webElement;
         this.driver = driver;
-        searchForElement = false;
+        this.timeOut = DEFAULT_TIME_OUT;
+        searchForElement = false; //we dont do findElement since is already init
     }
 
     @Override
@@ -98,7 +103,7 @@ public class $ implements IActions, IAttributes, IVerifications, ISelects, IWait
 
     @Override
     public $ waitForVisibility() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));  //explicit wait per se
         return this;
     }
@@ -109,7 +114,7 @@ public class $ implements IActions, IAttributes, IVerifications, ISelects, IWait
         }
     }
 
-    private Select getSelect() {
+    public Select getSelect() {
         findElement();
         return new Select(webElement);
     }

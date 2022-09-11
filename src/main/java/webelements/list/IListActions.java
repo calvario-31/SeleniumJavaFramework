@@ -1,4 +1,4 @@
-package webElements.list;
+package webelements.list;
 
 public interface IListActions {
     void clickAll();

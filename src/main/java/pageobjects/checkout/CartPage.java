@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import webElements.single.$;
+import webelements.single.$;
 
 public class CartPage extends BasePage {
     private final $ quantityLabel = $(By.className("cart_quantity_label"));

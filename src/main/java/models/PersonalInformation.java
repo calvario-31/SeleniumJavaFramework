@@ -2,12 +2,12 @@ package models;
 
 import com.github.javafaker.Faker;
 
-public class PersonalInformationModel {
+public class PersonalInformation {
     private final String firstName;
     private final String lastName;
     private final String zipCode;
 
-    public PersonalInformationModel() {
+    public PersonalInformation() {
         var faker = new Faker();
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();

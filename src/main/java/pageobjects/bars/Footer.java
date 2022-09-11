@@ -2,10 +2,10 @@ package pageobjects.bars;
 
 import base.BasePage;
 import io.qameta.allure.Step;
-import models.UrlModel;
+import models.Url;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import webElements.single.$;
+import webelements.single.$;
 
 import java.util.Map;
 
@@ -41,7 +41,7 @@ public class Footer extends BasePage {
     }
 
     @Step("Verifying social media links")
-    public void verifySocialMediaLinks(Map<String, UrlModel> urlMap) {
+    public void verifySocialMediaLinks(Map<String, Url> urlMap) {
         log.info("Verifying social media links are correct");
         softAssert.assertEquals(twitterOption.getHref(), urlMap.get("twitter").getUrl(), "twitter link are equals");
         softAssert.assertEquals(facebookOption.getHref(), urlMap.get("facebook").getUrl(), "fb link are equals");

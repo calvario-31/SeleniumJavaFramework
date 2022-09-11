@@ -1,4 +1,4 @@
-package webElements.single;
+package webelements.single;
 
 public interface ISelects {
     void selectByValue(String value);

@@ -5,8 +5,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import webElements.list.$$;
-import webElements.single.$;
+import webelements.list.$$;
+import webelements.single.$;
 
 public class HomeShoppingPage extends BasePage {
     private final $ title = $(By.className("title"));

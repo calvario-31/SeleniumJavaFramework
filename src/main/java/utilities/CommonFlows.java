@@ -1,8 +1,8 @@
 package utilities;
 
 import data.DataProviders;
-import models.ItemModel;
-import models.PersonalInformationModel;
+import models.Item;
+import models.PersonalInformation;
 import org.openqa.selenium.WebDriver;
 import pageobjects.bars.BurgerMenu;
 import pageobjects.bars.Footer;
@@ -41,7 +41,7 @@ public class CommonFlows {
         footer.waitPageToLoad();
     }
 
-    public void addSingleItemToCart(ItemModel item) {
+    public void addSingleItemToCart(Item item) {
         var homeShoppingPage = new HomeShoppingPage(driver);
         var itemDetailPage = new ItemDetailPage(driver);
 
@@ -55,7 +55,7 @@ public class CommonFlows {
         homeShoppingPage.waitPageToLoad();
     }
 
-    public void goToItemDetail(ItemModel item) {
+    public void goToItemDetail(Item item) {
         var homeShoppingPage = new HomeShoppingPage(driver);
         var itemDetailPage = new ItemDetailPage(driver);
 
@@ -67,7 +67,7 @@ public class CommonFlows {
     public void addItemsToCart() {
         var listItem = new DataProviders().itemsDataProvider();
 
-        for (ItemModel item : listItem) {
+        for (Item item : listItem) {
             addSingleItemToCart(item);
         }
     }
@@ -89,7 +89,7 @@ public class CommonFlows {
         header.verifyPage();
     }
 
-    public void addItemsAndGoToCart(ItemModel item) {
+    public void addItemsAndGoToCart(Item item) {
         var cartPage = new CartPage(driver);
         var header = new Header(driver);
 
@@ -98,7 +98,7 @@ public class CommonFlows {
         cartPage.waitPageToLoad();
     }
 
-    public void addItemsAndGoToStepOne(ItemModel item) {
+    public void addItemsAndGoToStepOne(Item item) {
         var cartPage = new CartPage(driver);
         var stepOnePage = new StepOnePage(driver);
         addItemsAndGoToCart(item);
@@ -106,16 +106,16 @@ public class CommonFlows {
         stepOnePage.waitPageToLoad();
     }
 
-    public void addItemsAndGoToStepTwo(ItemModel item) {
+    public void addItemsAndGoToStepTwo(Item item) {
         var stepOnePage = new StepOnePage(driver);
         var stepTwoPage = new StepTwoPage(driver);
-        var personalInfo = new PersonalInformationModel();
+        var personalInfo = new PersonalInformation();
         addItemsAndGoToStepOne(item);
         stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(), personalInfo.getZipCode());
         stepTwoPage.waitPageToLoad();
     }
 
-    public void addItemsFinishShopping(ItemModel item) {
+    public void addItemsFinishShopping(Item item) {
         var stepTwoPage = new StepTwoPage(driver);
         var successPage = new SuccessPage(driver);
 

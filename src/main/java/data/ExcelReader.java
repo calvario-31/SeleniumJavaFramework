@@ -1,10 +1,10 @@
 package data;
 
 import com.poiji.bind.Poiji;
-import models.CredentialModel;
-import models.ErrorMessageModel;
-import models.ItemModel;
-import models.UrlModel;
+import models.Credential;
+import models.ErrorMessage;
+import models.Item;
+import models.Url;
 import utilities.Logs;
 
 import java.io.File;
@@ -14,23 +14,23 @@ public class ExcelReader {
     private final String excelPath = "src/test/resources/data/testData.xlsx";
     private final Logs log = new Logs();
 
-    public List<CredentialModel> getCredentialsModelList() {
+    public List<Credential> getCredentialsModelList() {
         log.debug("Reading credentials from: " + excelPath);
-        return Poiji.fromExcel(new File(excelPath), CredentialModel.class);
+        return Poiji.fromExcel(new File(excelPath), Credential.class);
     }
 
-    public List<UrlModel> getUrlModelList() {
+    public List<Url> getUrlModelList() {
         log.debug("Reading url list from: " + excelPath);
-        return Poiji.fromExcel(new File(excelPath), UrlModel.class);
+        return Poiji.fromExcel(new File(excelPath), Url.class);
     }
 
-    public List<ItemModel> getItemList() {
+    public List<Item> getItemList() {
         log.debug("Reading item list from: " + excelPath);
-        return Poiji.fromExcel(new File(excelPath), ItemModel.class);
+        return Poiji.fromExcel(new File(excelPath), Item.class);
     }
 
-    public List<ErrorMessageModel> getErrorMessageList() {
+    public List<ErrorMessage> getErrorMessageList() {
         log.debug("Reading error messages from: " + excelPath);
-        return Poiji.fromExcel(new File(excelPath), ErrorMessageModel.class);
+        return Poiji.fromExcel(new File(excelPath), ErrorMessage.class);
     }
 }

@@ -2,7 +2,7 @@ package checkout;
 
 import base.BaseTest;
 import data.DataProviders;
-import models.ItemModel;
+import models.Item;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,7 +12,7 @@ import pageobjects.shopping.HomeShoppingPage;
 public class SuccessTests extends BaseTest {
     private SuccessPage successPage;
     private HomeShoppingPage homeShoppingPage;
-    private final ItemModel item = new DataProviders().getSingleItem();
+    private final Item item = new DataProviders().getSingleItem();
 
     @BeforeMethod(alwaysRun = true, description = "setup preconditions")
     public void setUp() {

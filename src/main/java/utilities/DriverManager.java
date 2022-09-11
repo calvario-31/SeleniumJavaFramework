@@ -51,6 +51,9 @@ public class DriverManager {
                 var edgeOptions = new EdgeOptions().setHeadless(headlessMode);
                 driver = new EdgeDriver(edgeOptions);
                 break;
+            default:
+                log.error("Bad driver name");
+                driver = null;
         }
 
         log.debug("Maximizing window");

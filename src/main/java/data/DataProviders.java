@@ -1,9 +1,9 @@
 package data;
 
-import models.CredentialModel;
-import models.ItemModel;
-import models.PersonalInformationModel;
-import models.UrlModel;
+import models.Credential;
+import models.Item;
+import models.PersonalInformation;
+import models.Url;
 import org.testng.annotations.DataProvider;
 import utilities.Logs;
 
@@ -15,7 +15,7 @@ public class DataProviders {
     public static final String BAD_PERSONAL_INFO_DP = "bad credentials";
     public static final String ITEM_LIST_DP = "item list";
 
-    public CredentialModel getInvalidCredentials() {
+    public Credential getInvalidCredentials() {
         log.debug("Creating invalid credentials");
         var credentialsMap = new MapParsers().getCredentialsMap();
         return credentialsMap.get("locked");
@@ -27,31 +27,31 @@ public class DataProviders {
         return urlMap.get("saucelabs").getUrl();
     }
 
-    public HashMap<String, UrlModel> getSocialMediaMap() {
+    public HashMap<String, Url> getSocialMediaMap() {
         log.debug("Creating social media urls data provider");
         return new MapParsers().getUrlsMap();
     }
 
-    public PersonalInformationModel getPersonalInfo() {
+    public PersonalInformation getPersonalInfo() {
         log.debug("Creating personal info model data provider");
-        return new PersonalInformationModel();
+        return new PersonalInformation();
     }
 
-    public ItemModel getSingleItem() {
+    public Item getSingleItem() {
         var itemMap = new MapParsers().getItemsMap();
 
         log.debug("Returning single item using items map");
         return itemMap.get("bike");
     }
 
-    public CredentialModel getValidCredentials() {
+    public Credential getValidCredentials() {
         var credentialsMap = new MapParsers().getCredentialsMap();
 
         log.debug("Returning valid credentials using credentials map");
         return credentialsMap.get("valid");
     }
 
-    public List<ItemModel> itemsDataProvider() {
+    public List<Item> itemsDataProvider() {
         log.debug("Returning all items as a list");
         return new ExcelReader().getItemList();
     }
@@ -59,7 +59,7 @@ public class DataProviders {
     @DataProvider(name = BAD_PERSONAL_INFO_DP)
     public Object[][] badPersonalInfoDataProvider() {
         log.debug("Creating bad personal info model data provider");
-        var personalInfo = new PersonalInformationModel();
+        var personalInfo = new PersonalInformation();
         var errorMessageMap = new MapParsers().getErrorMessagesMap();
 
         var firstname = personalInfo.getFirstName();

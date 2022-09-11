@@ -4,7 +4,7 @@ import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelSheet;
 
 @ExcelSheet("credentials")
-public class CredentialModel {
+public class Credential {
     @ExcelCellName("key")
     private String key;
     @ExcelCellName("username")

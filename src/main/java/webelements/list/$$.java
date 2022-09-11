@@ -1,9 +1,9 @@
-package webElements.list;
+package webelements.list;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import webElements.single.$;
+import webelements.single.$;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package webElements.single;
+package webelements.single;
 
 public interface IVerifications {
     boolean isDisplayed();
