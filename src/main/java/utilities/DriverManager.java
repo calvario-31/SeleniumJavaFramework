@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class DriverManager {
-    protected final Logs log = new Logs();
     private final String screenshotPath = "src/test/resources/screenshots";
     private final Logs logs = new Logs();
     private String browserName;
@@ -39,35 +38,35 @@ public class DriverManager {
             headlessMode = false;
         }
 
-        log.debug("Initializing the driver");
+        logs.debug("Initializing the driver");
         switch (browserName) {
             case "CHROME":
-                log.debug("Chrome driver");
+                logs.debug("Chrome driver");
                 WebDriverManager.chromedriver().setup();
                 var chromeOptions = new ChromeOptions().setHeadless(headlessMode);
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "EDGE":
-                log.debug("Edge driver");
+                logs.debug("Edge driver");
                 WebDriverManager.edgedriver().setup();
                 var edgeOptions = new EdgeOptions().setHeadless(headlessMode);
                 driver = new EdgeDriver(edgeOptions);
                 break;
             case "FIREFOX":
-                log.debug("Firefox driver");
+                logs.debug("Firefox driver");
                 WebDriverManager.firefoxdriver().setup();
                 var firefoxOptions = new FirefoxOptions().setHeadless(headlessMode);
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
-                log.error("Bad driver name");
+                logs.error("Bad driver name");
                 driver = null;
         }
 
-        log.debug("Maximizing window");
+        logs.debug("Maximizing window");
         driver.manage().window().maximize();
 
-        log.debug("Deleting cookies");
+        logs.debug("Deleting cookies");
         driver.manage().deleteAllCookies();
 
         staticDriver = driver;

@@ -114,7 +114,7 @@ public class $ implements IActions, IAttributes, IVerifications, ISelects, IWait
         }
     }
 
-    public Select getSelect() {
+    private Select getSelect() {
         findElement();
         return new Select(webElement);
     }

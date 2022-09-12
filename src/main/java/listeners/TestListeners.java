@@ -31,8 +31,7 @@ public class TestListeners implements ITestListener {
                 String.format("\t %s.%s ... \u001B[31mFAILED\u001B[0m", result.getInstanceName(), result.getName());
         System.out.println(message);
         var driver = getDriverFromResult(result);
-        var driverManager = new DriverManager();
-        driverManager.getScreenshot(driver, result.getName());
+        new DriverManager().getScreenshot(driver, result.getName());
     }
 
     @Override

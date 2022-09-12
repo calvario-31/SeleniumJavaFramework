@@ -22,18 +22,17 @@ public class $$ implements IListActions {
     }
 
     public $ getElementAtIndex(int index) {
+        findList();
         var element = webElementList.get(index);
         return new $(element, driver);
     }
 
     public $ getFirst() {
-        var element = webElementList.get(0);
-        return new $(element, driver);
+        return getElementAtIndex(0);
     }
 
     public $ getLast() {
-        var element = webElementList.get(webElementList.size() - 1);
-        return new $(element, driver);
+        return getElementAtIndex(webElementList.size() - 1);
     }
 
     @Override
