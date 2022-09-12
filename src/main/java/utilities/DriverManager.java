@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,6 +52,12 @@ public class DriverManager {
                 WebDriverManager.edgedriver().setup();
                 var edgeOptions = new EdgeOptions().setHeadless(headlessMode);
                 driver = new EdgeDriver(edgeOptions);
+                break;
+            case "FIREFOX":
+                log.debug("Firefox driver");
+                WebDriverManager.firefoxdriver().setup();
+                var firefoxOptions = new FirefoxOptions().setHeadless(headlessMode);
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
                 log.error("Bad driver name");

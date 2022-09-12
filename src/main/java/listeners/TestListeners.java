@@ -19,13 +19,17 @@ public class TestListeners implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         log.endTest("PASSED");
-        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[32mPASSED\u001B[0m");
+        var message =
+                String.format("\t %s.%s ... \u001B[32mPASSED\u001B[0m", result.getInstanceName(), result.getName());
+        System.out.println(message);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.endTest("FAILED");
-        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[31mFAILED\u001B[0m");
+        var message =
+                String.format("\t %s.%s ... \u001B[31mFAILED\u001B[0m", result.getInstanceName(), result.getName());
+        System.out.println(message);
         var driver = getDriverFromResult(result);
         var driverManager = new DriverManager();
         driverManager.getScreenshot(driver, result.getName());
@@ -34,7 +38,9 @@ public class TestListeners implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         log.endTest("SKIPPED");
-        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[33mSKIPPED\u001B[0m");
+        var message =
+                String.format("\t %s.%s ... \u001B[33mSKIPPED\u001B[0m", result.getInstanceName(), result.getName());
+        System.out.println(message);
     }
 
     @Override
