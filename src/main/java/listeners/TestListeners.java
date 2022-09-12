@@ -19,11 +19,13 @@ public class TestListeners implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         log.endTest("PASSED");
+        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[32mPASSED\u001B[0m");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.endTest("FAILED");
+        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[31mFAILED\u001B[0m");
         var driver = getDriverFromResult(result);
         var driverManager = new DriverManager();
         driverManager.getScreenshot(driver, result.getName());
@@ -32,6 +34,7 @@ public class TestListeners implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         log.endTest("SKIPPED");
+        System.out.println("\t" + result.getInstanceName() + "." + result.getName() + "... \u001B[33mSKIPPED\u001B[0m");
     }
 
     @Override
@@ -46,12 +49,12 @@ public class TestListeners implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        ITestListener.super.onStart(context);
+        System.out.println(context.getName());
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        ITestListener.super.onFinish(context);
+        System.out.println();
     }
 
     private WebDriver getDriverFromResult(ITestResult result) {
