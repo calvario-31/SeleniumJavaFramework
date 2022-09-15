@@ -64,6 +64,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/suites/${suiteName}.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <!-- <redirectTestOutputToFile>true</redirectTestOutputToFile>-->
 
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

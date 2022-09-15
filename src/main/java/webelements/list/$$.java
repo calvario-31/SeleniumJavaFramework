@@ -39,7 +39,7 @@ public class $$ implements IListActions {
     public void clickAll() {
         findList();
         for (var webElement : webElementList) {
-            webElement.click();
+            new $(webElement, driver).click();
         }
     }
 

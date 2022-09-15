@@ -1,14 +1,18 @@
 package listeners;
 
+import base.BaseListener;
 import io.qameta.allure.listener.TestLifecycleListener;
 import io.qameta.allure.model.TestResult;
-import utilities.DriverManager;
 
-public class AllureListeners implements TestLifecycleListener {
+public class AllureListeners extends BaseListener implements TestLifecycleListener {
     @Override
     public void beforeTestStop(TestResult result) {
-        if (result.getStatus().name().equalsIgnoreCase("FAILED")) {
-            DriverManager.getAllureScreenshot();
+        logs.debug("beforeTestStop: " + result.getStatus().name());
+
+        if (result.getStatus().name().equalsIgnoreCase("FAILED") ||
+                result.getStatus().name().equalsIgnoreCase("BROKEN")) {
+            logs.debug("failed");
+            fileManager.getAllureScreenshot(staticDriver);
         }
     }
 }

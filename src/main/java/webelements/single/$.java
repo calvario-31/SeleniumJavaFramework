@@ -29,7 +29,7 @@ public class $ implements IActions, IAttributes, IVerifications, ISelects, IWait
         this.webElement = webElement;
         this.driver = driver;
         this.timeOut = DEFAULT_TIME_OUT;
-        searchForElement = false; //we dont do findElement since is already init
+        searchForElement = false; //we do not need to do findElement since is already init
     }
 
     @Override

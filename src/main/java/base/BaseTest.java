@@ -34,8 +34,6 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "setting up the driver and going to index")
     protected void setupDriver() {
-        System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.StdErrLog");
-        System.setProperty("org.eclipse.jetty.LEVEL", "OFF");
         initDriver();
         commonFlows = new CommonFlows(driver);
 

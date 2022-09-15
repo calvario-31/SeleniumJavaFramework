@@ -15,7 +15,7 @@ public class MapParsers {
         log.debug("Creating credentials map");
         var credentialsList = new ExcelReader().getCredentialsModelList();
         var hashMap = new HashMap<String, Credential>();
-        for (Credential credentials : credentialsList) {
+        for (var credentials : credentialsList) {
             hashMap.put(credentials.getKey(), credentials);
         }
         return hashMap;
@@ -25,7 +25,7 @@ public class MapParsers {
         log.debug("Creating urls map");
         var urlModelList = new ExcelReader().getUrlModelList();
         var hashMap = new HashMap<String, Url>();
-        for (Url url : urlModelList) {
+        for (var url : urlModelList) {
             hashMap.put(url.getKey(), url);
         }
         return hashMap;
@@ -35,7 +35,7 @@ public class MapParsers {
         log.debug("Creating items map");
         var itemModelList = new ExcelReader().getItemList();
         var hashMap = new HashMap<String, Item>();
-        for (Item item : itemModelList) {
+        for (var item : itemModelList) {
             hashMap.put(item.getKey(), item);
         }
         return hashMap;
@@ -45,7 +45,7 @@ public class MapParsers {
         log.debug("Creating errors message map");
         var itemModelList = new ExcelReader().getErrorMessageList();
         var hashMap = new HashMap<String, ErrorMessage>();
-        for (ErrorMessage errorMessage : itemModelList) {
+        for (var errorMessage : itemModelList) {
             hashMap.put(errorMessage.getKey(), errorMessage);
         }
         return hashMap;
