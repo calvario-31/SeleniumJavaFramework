@@ -44,7 +44,7 @@ public class ShoppingTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        homeShoppingPage = new HomeShoppingPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        homeShoppingPage = new HomeShoppingPage(driver);
     }
 }
