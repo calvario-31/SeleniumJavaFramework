@@ -34,8 +34,8 @@ public class SuccessTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        successPage = new SuccessPage(webDriver);
-        homeShoppingPage = new HomeShoppingPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        successPage = new SuccessPage(driver);
+        homeShoppingPage = new HomeShoppingPage(driver);
     }
 }

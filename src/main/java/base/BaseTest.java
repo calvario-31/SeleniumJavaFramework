@@ -51,5 +51,5 @@ public abstract class BaseTest {
         return driver;
     }
 
-    protected abstract void initPages(WebDriver webDriver);
+    protected abstract void initPages(WebDriver driver);
 }

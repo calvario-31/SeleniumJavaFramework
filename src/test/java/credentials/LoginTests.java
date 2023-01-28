@@ -11,7 +11,7 @@ public class LoginTests extends BaseTest {
 
     @Test(groups = {smoke})
     public void verifyLoginPageTest() {
-        //loginPage.verifyPage();
+        loginPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        loginPage = new LoginPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        loginPage = new LoginPage(driver);
     }
 }
