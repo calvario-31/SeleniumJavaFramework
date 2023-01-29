@@ -11,7 +11,7 @@ public class LoginTests extends BaseTest {
 
     @Test(groups = {smoke})
     public void verifyLoginPageTest() {
-        //loginPage.verifyPage();
+        loginPage.verifyPage();
         commonFlows.verifyFooterHeader();
     }
 

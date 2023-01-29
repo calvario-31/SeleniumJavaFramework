@@ -11,7 +11,7 @@ public class ItemDetailTests extends BaseTest {
     private ItemDetailPage itemDetailPage;
     private final Item item = dataProviders.getSingleItem();
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
         commonFlows.goToItemDetail(item);
     }

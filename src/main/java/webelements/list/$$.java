@@ -7,7 +7,7 @@ import webelements.single.$;
 
 import java.util.List;
 
-public class $$ implements IListActions {
+public class $$ {
     private final By locator;
     private final WebDriver driver;
     private List<WebElement> webElementList;
@@ -23,7 +23,7 @@ public class $$ implements IListActions {
 
     public $ getElementAtIndex(int index) {
         findList();
-        var element = webElementList.get(index);
+        final var element = webElementList.get(index);
         return new $(element, driver);
     }
 
@@ -35,7 +35,6 @@ public class $$ implements IListActions {
         return getElementAtIndex(webElementList.size() - 1);
     }
 
-    @Override
     public void clickAll() {
         findList();
         for (var webElement : webElementList) {
@@ -43,7 +42,6 @@ public class $$ implements IListActions {
         }
     }
 
-    @Override
     public void sendKeysAll(String text) {
         findList();
         for (var webElement : webElementList) {

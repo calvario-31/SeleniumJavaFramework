@@ -1,7 +1,6 @@
 package checkout;
 
 import base.BaseTest;
-import data.DataProviders;
 import models.Item;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
@@ -12,9 +11,9 @@ import pageobjects.shopping.HomeShoppingPage;
 public class StepTwoTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;
     private StepTwoPage stepTwoPage;
-    private final Item item = new DataProviders().getSingleItem();
+    private final Item item = dataProviders.getSingleItem();
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
         commonFlows.addItemsAndGoToStepTwo(item);
     }

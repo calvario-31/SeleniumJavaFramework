@@ -4,6 +4,7 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 public class BurgerMenu extends BasePage {
@@ -25,7 +26,6 @@ public class BurgerMenu extends BasePage {
     @Override
     @Step("Verifying burger menu page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(itemList.isDisplayed(), "item is displayed");
         softAssert.assertTrue(allItemsOption.isDisplayed(), "all items option is displayed");
         softAssert.assertTrue(aboutOption.isDisplayed(), "about option is displayed");
@@ -42,13 +42,13 @@ public class BurgerMenu extends BasePage {
 
     @Step("Clicking on logout option")
     public void clickOnLogout() {
-        log.info("Clicking on logout option");
+        Logs.info("Clicking on logout option");
         logoutOption.click();
     }
 
     @Step("Clicking on all items option")
     public void clickOnAllItems() {
-        log.info("Clicking on all items option");
+        Logs.info("Clicking on all items option");
         allItemsOption.click();
     }
 }

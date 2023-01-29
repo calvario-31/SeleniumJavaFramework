@@ -10,7 +10,7 @@ import pageobjects.bars.Footer;
 public class FooterTests extends BaseTest {
     private Footer footer;
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
         commonFlows.loginValidUser();
     }
@@ -22,7 +22,7 @@ public class FooterTests extends BaseTest {
 
     @Test(groups = {regression})
     public void verifySocialMediaLinksTest() {
-        var socialMediaMap = new DataProviders().getSocialMediaMap();
+        final var socialMediaMap = new DataProviders().getSocialMediaMap();
         footer.verifySocialMediaLinks(socialMediaMap);
     }
 

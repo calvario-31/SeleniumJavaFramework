@@ -9,7 +9,7 @@ import pageobjects.bars.Header;
 public class HeaderTests extends BaseTest {
     private Header header;
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
         commonFlows.loginValidUser();
     }

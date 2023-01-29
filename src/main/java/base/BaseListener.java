@@ -12,31 +12,31 @@ public abstract class BaseListener {
     protected final Logs logs = new Logs();
 
     protected void setDriver(ITestResult result) {
-        var currentClass = result.getInstance();
+        final var currentClass = result.getInstance();
         driver = ((BaseTest) currentClass).getDriver(); //for the test listeners
         staticDriver = driver; //for allure listeners
     }
 
     protected void printSuccess(String className, String testName) {
-        var status = "PASSED";
+        final var status = "PASSED";
         logs.endTest(status);
-        var message =
+        final var message =
                 String.format("\t %s.%s ... \u001B[32m%s\u001B[0m", className, testName, status);
         System.out.println(message);
     }
 
     protected void printFailed(String className, String testName) {
-        var status = "FAILED";
+        final var status = "FAILED";
         logs.endTest(status);
-        var message =
+        final var message =
                 String.format("\t %s.%s ... \u001B[31m%s\u001B[0m", className, testName, status);
         System.out.println(message);
     }
 
     protected void printSkipped(String className, String testName) {
-        var status = "SKIPPED";
+        final var status = "SKIPPED";
         logs.endTest(status);
-        var message =
+        final var message =
                 String.format("\t %s.%s ... \u001B[33m%s\u001B[0m", className, testName, status);
         System.out.println(message);
     }

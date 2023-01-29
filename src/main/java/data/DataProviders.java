@@ -11,65 +11,64 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataProviders {
-    private final Logs log = new Logs();
     public static final String BAD_PERSONAL_INFO_DP = "bad credentials";
     public static final String ITEM_LIST_DP = "item list";
 
     public Credential getInvalidCredentials() {
-        log.debug("Creating invalid credentials");
-        var credentialsMap = new MapParsers().getCredentialsMap();
+        Logs.debug("Creating invalid credentials");
+        final var credentialsMap = new MapParsers().getCredentialsMap();
         return credentialsMap.get("locked");
     }
 
     public String getSauceLabsUrl() {
-        log.debug("Creating saucelabs url");
-        var urlMap = new MapParsers().getUrlsMap();
+        Logs.debug("Creating saucelabs url");
+        final var urlMap = new MapParsers().getUrlsMap();
         return urlMap.get("saucelabs").getUrl();
     }
 
     public HashMap<String, Url> getSocialMediaMap() {
-        log.debug("Creating social media urls data provider");
+        Logs.debug("Creating social media urls data provider");
         return new MapParsers().getUrlsMap();
     }
 
     public PersonalInformation getPersonalInfo() {
-        log.debug("Creating personal info model data provider");
+        Logs.debug("Creating personal info model data provider");
         return new PersonalInformation();
     }
 
     public Item getSingleItem() {
-        var itemMap = new MapParsers().getItemsMap();
+        final var itemMap = new MapParsers().getItemsMap();
 
-        log.debug("Returning single item using items map");
+        Logs.debug("Returning single item using items map");
         return itemMap.get("bike");
     }
 
     public Credential getValidCredentials() {
-        var credentialsMap = new MapParsers().getCredentialsMap();
+        final var credentialsMap = new MapParsers().getCredentialsMap();
 
-        log.debug("Returning valid credentials using credentials map");
+        Logs.debug("Returning valid credentials using credentials map");
         return credentialsMap.get("valid");
     }
 
     public List<Item> itemsDataProvider() {
-        log.debug("Returning all items as a list");
+        Logs.debug("Returning all items as a list");
         return new ExcelReader().getItemList();
     }
 
     @DataProvider(name = BAD_PERSONAL_INFO_DP)
     public Object[][] badPersonalInfoDataProvider() {
-        log.debug("Creating bad personal info model data provider");
-        var personalInfo = new PersonalInformation();
-        var errorMessageMap = new MapParsers().getErrorMessagesMap();
+        Logs.debug("Creating bad personal info model data provider");
+        final var personalInfo = new PersonalInformation();
+        final var errorMessageMap = new MapParsers().getErrorMessagesMap();
 
-        var firstname = personalInfo.getFirstName();
-        var lastname = personalInfo.getLastName();
-        var zipcode = personalInfo.getZipCode();
-        var blank = "";
+        final var firstname = personalInfo.getFirstName();
+        final var lastname = personalInfo.getLastName();
+        final var zipcode = personalInfo.getZipCode();
+        final var blank = "";
 
-        var errorMessageFirstname = errorMessageMap.get("missingFirstname").getErrorMessage();
-        var errorMessageLastName = errorMessageMap.get("missingLastname").getErrorMessage();
-        var errorMessageZipCode = errorMessageMap.get("missingZipcode").getErrorMessage();
+        final var errorMessageFirstname = errorMessageMap.get("missingFirstname").getErrorMessage();
+        final var errorMessageLastName = errorMessageMap.get("missingLastname").getErrorMessage();
+        final var errorMessageZipCode = errorMessageMap.get("missingZipcode").getErrorMessage();
 
         return new Object[][]{
                 {blank, lastname, zipcode, errorMessageFirstname},
@@ -80,14 +79,14 @@ public class DataProviders {
 
     @DataProvider(name = ITEM_LIST_DP)
     public Object[][] itemListDP() {
-        log.debug("Creating item list data provider");
-        var itemList = new ExcelReader().getItemList();
-        var listLength = itemList.size();
+        Logs.debug("Creating item list data provider");
+        final var itemList = new ExcelReader().getItemList();
+        final var listLength = itemList.size();
 
-        var object = new Object[listLength][];
+        final var object = new Object[listLength][];
 
         for (var i = 0; i < listLength; i++) {
-            var currentItem = itemList.get(i);
+            final var currentItem = itemList.get(i);
             object[i] =
                     new Object[]{
                             currentItem.getItemName(),

@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utilities.Logs;
 import webelements.single.$;
 
 public class LoginPage extends BasePage {
@@ -27,7 +28,6 @@ public class LoginPage extends BasePage {
     @Override
     @Step("Verifying login page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(loginLogo.isDisplayed(), "login logo is displayed");
         softAssert.assertTrue(emailInput.isDisplayed(), "email input is displayed");
         softAssert.assertTrue(passwordInput.isDisplayed(), "password input is displayed");
@@ -37,13 +37,13 @@ public class LoginPage extends BasePage {
 
     @Step("Filling credentials")
     public void fillCredentials(String username, String password) {
-        log.info("Filling username input");
+        Logs.info("Filling username input");
         emailInput.sendKeys(username);
 
-        log.info("Filling password input");
+        Logs.info("Filling password input");
         passwordInput.sendKeys(password);
 
-        log.info("Clicking on button login");
+        Logs.info("Clicking on button login");
         buttonLogin.click();
     }
 

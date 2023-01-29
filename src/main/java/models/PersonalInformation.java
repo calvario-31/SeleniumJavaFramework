@@ -8,7 +8,7 @@ public class PersonalInformation {
     private final String zipCode;
 
     public PersonalInformation() {
-        var faker = new Faker();
+        final var faker = new Faker();
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();
         this.zipCode = faker.address().zipCode();

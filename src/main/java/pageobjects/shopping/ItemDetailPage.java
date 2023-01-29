@@ -4,6 +4,7 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 public class ItemDetailPage extends BasePage {
@@ -26,7 +27,6 @@ public class ItemDetailPage extends BasePage {
     @Override
     @Step("Verifying item detail page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(addToCartButton.isDisplayed(), "add to cart button is displayed");
         softAssert.assertTrue(backToProductsButton.isDisplayed(), "back to products is displayed");
         softAssert.assertTrue(nameLabel.isDisplayed(), "name label is displayed");
@@ -37,13 +37,13 @@ public class ItemDetailPage extends BasePage {
 
     @Step("Clicking on adding item to cart")
     public void clickingOnAddItemToCart() {
-        log.info("Clicking on adding item to cart");
+        Logs.info("Clicking on adding item to cart");
         addToCartButton.click();
     }
 
     @Step("Clicking on back to products")
     public void clickOnBackToProducts() {
-        log.info("Clicking on back to products");
+        Logs.info("Clicking on back to products");
         backToProductsButton.click();
     }
 

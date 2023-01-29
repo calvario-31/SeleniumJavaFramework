@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utilities.Logs;
 import webelements.single.$;
 
 public class CartPage extends BasePage {
@@ -31,7 +32,7 @@ public class CartPage extends BasePage {
     @Override
     @Step("Verifying Cart Page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
+        Logs.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(quantityLabel.isDisplayed(), "quantity label is displayed");
         softAssert.assertTrue(descriptionLabel.isDisplayed(), "description label is displayed");
         softAssert.assertTrue(continueShoppingButton.isDisplayed(), "continue shopping button is displayed");
@@ -41,7 +42,7 @@ public class CartPage extends BasePage {
 
     @Step("Verify item contents")
     public void verifyItemContents(String name, double price) {
-        log.info("Verifying item row are displayed");
+        Logs.info("Verifying item row are displayed");
         softAssert.assertTrue(itemQuantity.isDisplayed(), "quantity label is displayed");
         softAssert.assertTrue(itemName.isDisplayed(), "description label is displayed");
         softAssert.assertTrue(itemPrice.isDisplayed(), "continue shopping button is displayed");
@@ -52,7 +53,7 @@ public class CartPage extends BasePage {
         var itemPriceUI = Double.parseDouble(itemPrice.getText().substring(1));
         var itemNameUI = itemName.getText();
 
-        log.info("Verifying item contents are correct");
+        Logs.info("Verifying item contents are correct");
         softAssert.assertEquals(itemPriceUI, price, "price is correct");
         softAssert.assertEquals(itemNameUI, name, "name is correct");
         softAssert.assertEquals(itemQuantityUI, 1, "quantity is correct");
@@ -61,25 +62,25 @@ public class CartPage extends BasePage {
 
     @Step("Click on continue checkout")
     public void clickOnContinueCheckout() {
-        log.info("Clicking on continue checkout");
+        Logs.info("Clicking on continue checkout");
         checkoutButton.click();
     }
 
     @Step("Click on continue shopping")
     public void clickOnContinueShopping() {
-        log.info("Clicking on continue shopping");
+        Logs.info("Clicking on continue shopping");
         continueShoppingButton.click();
     }
 
     @Step("Click on remove item")
     public void clickOnRemoveItem() {
-        log.info("Click on remove item");
+        Logs.info("Click on remove item");
         removeItemButton.click();
     }
 
     @Step("Verifying list is empty")
     public void verifyListIsEmpty() {
-        log.info("Verifying list is empty");
+        Logs.info("Verifying list is empty");
         Assert.assertFalse(cartItemRow.isDisplayed());
     }
 }

@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static base.BasePage.DEFAULT_TIME_OUT;
 
-public class $ implements IActions, IAttributes, IVerifications, ISelects, IWaits {
+public class $ {
     private WebElement webElement;
     private By locator;
     private final WebDriver driver;
@@ -32,76 +32,64 @@ public class $ implements IActions, IAttributes, IVerifications, ISelects, IWait
         searchForElement = false; //we do not need to do findElement since is already init
     }
 
-    @Override
     public $ click() {
         findElement();
         webElement.click();
         return this;
     }
 
-    @Override
     public $ sendKeys(String text) {
         findElement();
         webElement.sendKeys(text);
         return this;
     }
 
-    @Override
     public boolean isDisplayed() {
         findElement();
         return webElement.isDisplayed();
     }
 
-    @Override
     public boolean isEnabled() {
         findElement();
         return webElement.isEnabled();
     }
 
-    @Override
     public boolean isSelected() {
         findElement();
         return webElement.isSelected();
     }
 
-    @Override
     public String getText() {
         findElement();
         return webElement.getText();
     }
 
-    @Override
     public String getHref() {
         findElement();
         return webElement.getAttribute("href");
     }
 
-    @Override
     public void selectByValue(String value) {
-        var select = getSelect();
+        final var select = getSelect();
         select.selectByValue(value);
     }
 
-    @Override
     public void selectByIndex(int index) {
-        var select = getSelect();
+        final var select = getSelect();
         select.selectByIndex(index);
     }
 
-    @Override
     public void selectByVisibleText(String text) {
-        var select = getSelect();
+        final var select = getSelect();
         select.selectByVisibleText(text);
     }
 
-    @Override
     public $ waitForVisibility(int timeOut) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); //explicit wait per se
         return this;
     }
 
-    @Override
     public $ waitForVisibility() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));  //explicit wait per se

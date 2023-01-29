@@ -4,6 +4,7 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 public class SuccessPage extends BasePage {
@@ -27,7 +28,6 @@ public class SuccessPage extends BasePage {
     @Override
     @Step("Verifying Success Page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(backToHomeButton.isDisplayed(), "back to home button is displayed");
         softAssert.assertTrue(successTitleLabel.isDisplayed(), "success title label is displayed");
         softAssert.assertTrue(successDescriptionLabel.isDisplayed(), "success description label is displayed");
@@ -37,7 +37,7 @@ public class SuccessPage extends BasePage {
 
     @Step("Clicking on back to home")
     public void clickOnBackToHome() {
-        log.info("Clicking on back to home");
+        Logs.info("Clicking on back to home");
         backToHomeButton.click();
     }
 }

@@ -9,7 +9,7 @@ import pageobjects.shopping.HomeShoppingPage;
 public class ShoppingTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setup() {
         commonFlows.loginValidUser();
     }

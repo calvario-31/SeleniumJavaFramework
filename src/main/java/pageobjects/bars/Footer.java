@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import models.Url;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 import java.util.Map;
@@ -30,7 +31,6 @@ public class Footer extends BasePage {
     @Override
     @Step("Verifying footer")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(socialList.isDisplayed(), "item is displayed");
         softAssert.assertTrue(twitterOption.isDisplayed(), "all items option is displayed");
         softAssert.assertTrue(facebookOption.isDisplayed(), "about option is displayed");
@@ -42,7 +42,7 @@ public class Footer extends BasePage {
 
     @Step("Verifying social media links")
     public void verifySocialMediaLinks(Map<String, Url> urlMap) {
-        log.info("Verifying social media links are correct");
+        Logs.info("Verifying social media links are correct");
         softAssert.assertEquals(twitterOption.getHref(), urlMap.get("twitter").getUrl(), "twitter link are equals");
         softAssert.assertEquals(facebookOption.getHref(), urlMap.get("facebook").getUrl(), "fb link are equals");
         softAssert.assertEquals(linkedinOption.getHref(), urlMap.get("linkedin").getUrl(), "linkedin link are equals");

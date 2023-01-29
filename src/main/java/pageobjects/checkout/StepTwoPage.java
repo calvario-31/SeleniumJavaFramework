@@ -4,6 +4,7 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 public class StepTwoPage extends BasePage {
@@ -36,7 +37,6 @@ public class StepTwoPage extends BasePage {
     @Override
     @Step("Verifying Step Two Page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(itemNameLabel.isDisplayed(), "item name label is displayed");
         softAssert.assertTrue(itemPriceLabel.isDisplayed(), "item price label is displayed");
         softAssert.assertTrue(quantityLabel.isDisplayed(), "quantity label is displayed");
@@ -53,7 +53,7 @@ public class StepTwoPage extends BasePage {
 
     @Step("Verifying item contents {0}")
     public void verifyItemContents(String name, double price) {
-        log.info("Verifying item row are displayed");
+        Logs.info("Verifying item row are displayed");
         softAssert.assertTrue(itemQuantityLabel.isDisplayed(), "quantity label is displayed");
         softAssert.assertTrue(itemNameLabel.isDisplayed(), "description label is displayed");
         softAssert.assertTrue(itemPriceLabel.isDisplayed(), "continue shopping button is displayed");
@@ -63,7 +63,7 @@ public class StepTwoPage extends BasePage {
         var itemPriceUI = Double.parseDouble(itemPriceLabel.getText().substring(1));
         var itemNameUI = itemNameLabel.getText();
 
-        log.info("Verifying item contents are correct");
+        Logs.info("Verifying item contents are correct");
         softAssert.assertEquals(itemPriceUI, price, "price is correct");
         softAssert.assertEquals(itemNameUI, name, "name is correct");
         softAssert.assertEquals(itemQuantityUI, 1, "quantity is correct");
@@ -72,13 +72,13 @@ public class StepTwoPage extends BasePage {
 
     @Step("Clicking on cancel button")
     public void clickOnCancel() {
-        log.info("Clicking on cancel button");
+        Logs.info("Clicking on cancel button");
         cancelButton.click();
     }
 
     @Step("Clicking on finish button")
     public void clickOnFinish() {
-        log.info("Clicking on finish button");
+        Logs.info("Clicking on finish button");
         finishButton.click();
     }
 }

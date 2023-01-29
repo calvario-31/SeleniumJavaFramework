@@ -16,9 +16,9 @@ public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
     private StepTwoPage stepTwoPage;
     private CartPage cartPage;
-    private final Item item = new DataProviders().getSingleItem();
+    private final Item item = dataProviders.getSingleItem();
 
-    @BeforeMethod(alwaysRun = true, description = "setup preconditions")
+    @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
         commonFlows.addItemsAndGoToStepOne(item);
     }

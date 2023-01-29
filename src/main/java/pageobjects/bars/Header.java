@@ -4,6 +4,7 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.Logs;
 import webelements.single.$;
 
 public class Header extends BasePage {
@@ -24,7 +25,6 @@ public class Header extends BasePage {
     @Override
     @Step("Verifying header")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(appLogo.isDisplayed(), "app logo is displayed");
         softAssert.assertTrue(cartButton.isDisplayed(), "cart button is displayed");
         softAssert.assertTrue(burgerMenuButton.isDisplayed(), "burger menu button is displayed");
@@ -33,13 +33,13 @@ public class Header extends BasePage {
 
     @Step("Opening burger menu")
     public void openBurgerMenu() {
-        log.info("Opening burger menu");
+        Logs.info("Opening burger menu");
         burgerMenuButton.click();
     }
 
     @Step("Clicking on checkout cart")
     public void clickOnCheckoutCart() {
-        log.info("Clicking on checkout cart");
+        Logs.info("Clicking on checkout cart");
         cartButton.click();
     }
 }

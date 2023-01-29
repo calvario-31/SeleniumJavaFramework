@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utilities.Logs;
 import webelements.list.$$;
 import webelements.single.$;
 
@@ -17,7 +18,7 @@ public class HomeShoppingPage extends BasePage {
     private final $ inventoryContainer = $(By.id("inventory_container"));
 
     private $ getItemDivByName(String name) {
-        var xpath = String.format("//div[text()='%s']", name);
+        final var xpath = String.format("//div[text()='%s']", name);
         return $(By.xpath(xpath));
     }
 
@@ -34,7 +35,6 @@ public class HomeShoppingPage extends BasePage {
     @Override
     @Step("Verifying home shopping page")
     public void verifyPage() {
-        log.info("Verifying " + this.getClass().getSimpleName());
         softAssert.assertTrue(title.isDisplayed(), "title is displayed");
         softAssert.assertTrue(filterSelect.isDisplayed(), "filter select is displayed");
         softAssert.assertTrue(robotImage.isDisplayed(), "robot image is displayed");
@@ -45,10 +45,10 @@ public class HomeShoppingPage extends BasePage {
     @Step("Filtering by name")
     public void filterByName(boolean isAscendant) {
         if (isAscendant) {
-            log.info("Filter by name ascendant: AZ");
+            Logs.info("Filter by name ascendant: AZ");
             filterSelect.selectByValue("az");
         } else {
-            log.info("Filter by name descendant: ZA");
+            Logs.info("Filter by name descendant: ZA");
             filterSelect.selectByValue("za");
         }
     }
@@ -56,47 +56,47 @@ public class HomeShoppingPage extends BasePage {
     @Step("Filtering by price")
     public void filterByPrice(boolean isAscendant) {
         if (isAscendant) {
-            log.info("Filter by price ascendant: low -> high");
+            Logs.info("Filter by price ascendant: low -> high");
             filterSelect.selectByValue("lohi");
         } else {
-            log.info("Filter by price descendant: high -> low");
+            Logs.info("Filter by price descendant: high -> low");
             filterSelect.selectByValue("hilo");
         }
     }
 
     @Step("Verifying item price order")
     public void verifyItemPriceOrder(boolean isAscendant) {
-        var firstItem =
+        final var firstItem =
                 Double.parseDouble(allPrices.getFirst().getText().substring(1));
-        var lastItem =
+        final var lastItem =
                 Double.parseDouble(allPrices.getLast().getText().substring(1));
 
         if (isAscendant) {
-            log.info("Verifying item price order is ascendant: low -> high");
+            Logs.info("Verifying item price order is ascendant: low -> high");
             Assert.assertTrue(firstItem < lastItem);
         } else {
-            log.info("Verifying item price order is descendant: high -> low");
+            Logs.info("Verifying item price order is descendant: high -> low");
             Assert.assertTrue(firstItem > lastItem);
         }
     }
 
     @Step("Verifying item name order")
     public void verifyItemNameOrder(boolean isAscendant) {
-        var firstItem = allNames.getFirst().getText();
-        var lastItem = allNames.getLast().getText();
+        final var firstItem = allNames.getFirst().getText();
+        final var lastItem = allNames.getLast().getText();
 
         if (isAscendant) {
-            log.info("Verifying item name order is ascendant: AZ");
+            Logs.info("Verifying item name order is ascendant: AZ");
             Assert.assertTrue(firstItem.compareToIgnoreCase(lastItem) < 0);
         } else {
-            log.info("Verifying item name order is descendant: ZA");
+            Logs.info("Verifying item name order is descendant: ZA");
             Assert.assertTrue(firstItem.compareToIgnoreCase(lastItem) > 0);
         }
     }
 
     @Step("Going to item detail with name {0}")
     public void goToItemDetail(String itemName) {
-        log.info("Going to item detail with name " + itemName);
+        Logs.info("Going to item detail with name " + itemName);
         getItemDivByName(itemName).click();
     }
 }

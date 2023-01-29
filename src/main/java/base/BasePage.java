@@ -13,7 +13,6 @@ public abstract class BasePage {
     private final String mainUrl = "https://www.saucedemo.com";
     protected final SoftAssert softAssert;
     private int timeOut;
-    protected final Logs log = new Logs();
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
@@ -27,9 +26,9 @@ public abstract class BasePage {
     }
 
     protected void waitPage($ webElement, String pageName) {
-        log.info("Waiting " + pageName + " to load");
+        Logs.info("Waiting " + pageName + " to load");
         webElement.waitForVisibility(timeOut);
-        log.info(pageName + " loaded successfully");
+        Logs.info(pageName + " loaded successfully");
     }
 
     protected $ $(By locator) {
@@ -41,7 +40,7 @@ public abstract class BasePage {
     }
 
     public void goToIndex() {
-        log.info("Going to the main url");
+        Logs.info("Going to the main url");
         driver.get(mainUrl);
     }
 
