@@ -23,7 +23,7 @@ public class ItemDetailTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        itemDetailPage = new ItemDetailPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        itemDetailPage = new ItemDetailPage(driver);
     }
 }

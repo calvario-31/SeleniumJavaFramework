@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        loginPage = new LoginPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        loginPage = new LoginPage(driver);
     }
 }

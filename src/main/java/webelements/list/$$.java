@@ -45,7 +45,7 @@ public class $$ {
     public void sendKeysAll(String text) {
         findList();
         for (var webElement : webElementList) {
-            webElement.sendKeys(text);
+            new $(webElement, driver).sendKeys(text);
         }
     }
 }

@@ -27,7 +27,7 @@ public class FooterTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        footer = new Footer(webDriver);
+    protected void initPages(WebDriver driver) {
+        footer = new Footer(driver);
     }
 }

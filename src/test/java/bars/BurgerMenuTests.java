@@ -36,8 +36,8 @@ public class BurgerMenuTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver webDriver) {
-        burgerMenu = new BurgerMenu(webDriver);
-        loginPage = new LoginPage(webDriver);
+    protected void initPages(WebDriver driver) {
+        burgerMenu = new BurgerMenu(driver);
+        loginPage = new LoginPage(driver);
     }
 }
