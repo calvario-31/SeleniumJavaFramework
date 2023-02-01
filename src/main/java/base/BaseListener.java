@@ -9,7 +9,6 @@ public abstract class BaseListener {
     protected WebDriver driver;
     protected static WebDriver staticDriver;
     protected final FileManager fileManager = new FileManager();
-    protected final Logs logs = new Logs();
 
     protected void setDriver(ITestResult result) {
         final var currentClass = result.getInstance();
@@ -19,7 +18,7 @@ public abstract class BaseListener {
 
     protected void printSuccess(String className, String testName) {
         final var status = "PASSED";
-        logs.endTest(status);
+        Logs.endTest(status);
         final var message =
                 String.format("\t %s.%s ... \u001B[32m%s\u001B[0m", className, testName, status);
         System.out.println(message);
@@ -27,7 +26,7 @@ public abstract class BaseListener {
 
     protected void printFailed(String className, String testName) {
         final var status = "FAILED";
-        logs.endTest(status);
+        Logs.endTest(status);
         final var message =
                 String.format("\t %s.%s ... \u001B[31m%s\u001B[0m", className, testName, status);
         System.out.println(message);
@@ -35,7 +34,7 @@ public abstract class BaseListener {
 
     protected void printSkipped(String className, String testName) {
         final var status = "SKIPPED";
-        logs.endTest(status);
+        Logs.endTest(status);
         final var message =
                 String.format("\t %s.%s ... \u001B[33m%s\u001B[0m", className, testName, status);
         System.out.println(message);
