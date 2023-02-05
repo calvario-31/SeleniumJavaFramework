@@ -26,9 +26,9 @@ public abstract class BasePage {
     }
 
     protected void waitPage($ webElement, String pageName) {
-        Logs.info("Waiting " + pageName + " to load");
+        Logs.info("Waiting %s to load", pageName);
         webElement.waitForVisibility(timeOut);
-        Logs.info(pageName + " loaded successfully");
+        Logs.info("%s loaded successfully", pageName);
     }
 
     protected $ $(By locator) {

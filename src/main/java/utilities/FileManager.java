@@ -26,7 +26,7 @@ public class FileManager {
             Logs.debug("Deleting allure reports directory");
             FileUtils.deleteDirectory(new File(allureReportsPath));
         } catch (IOException ioException) {
-            Logs.error(String.format("Failed to delete directory: %s%n", ioException.getLocalizedMessage()));
+            Logs.error("Failed to delete directory: %s%n", ioException.getLocalizedMessage());
         }
         return this;
     }
@@ -58,20 +58,19 @@ public class FileManager {
     private FileManager getPageSourceXML(WebDriver driver, String fileName) {
         Logs.debug("Taking page source");
         final var path = String.format("%s/view-hierarchy-%s.html", debugEvidenceFolder, fileName);
-        Logs.debug(path);
         try {
-            Logs.debug("Creating xml file");
+            Logs.debug("Creating html file: %s", path);
             final var file = new File(path);
             Logs.debug("Creating file parents");
             if (file.getParentFile().mkdirs()) {
-                Logs.debug("Writing to xml file");
+                Logs.debug("Writing to html file");
                 final var fileWriter = new FileWriter(file);
                 fileWriter.write(driver.getPageSource());
                 Logs.debug("Closing filewriter");
                 fileWriter.close();
             }
         } catch (IOException ioException) {
-            Logs.error(String.format("Failed to write xml: %s%n", ioException.getLocalizedMessage()));
+            Logs.error("Failed to create/write html: %s%n", ioException.getLocalizedMessage());
         }
         return this;
     }
@@ -83,7 +82,7 @@ public class FileManager {
         try {
             FileUtils.copyFile(screenshotFile, new File(path));
         } catch (IOException ioException) {
-            Logs.error(String.format("Failed creating screenshot: %s", ioException.getLocalizedMessage()));
+            Logs.error("Failed creating screenshot: %s", ioException.getLocalizedMessage());
         }
         return this;
     }

@@ -96,7 +96,7 @@ public class HomeShoppingPage extends BasePage {
 
     @Step("Going to item detail with name {0}")
     public void goToItemDetail(String itemName) {
-        Logs.info("Going to item detail with name " + itemName);
+        Logs.info("Going to item detail with name %s", itemName);
         getItemDivByName(itemName).click();
     }
 }
