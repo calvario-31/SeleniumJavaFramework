@@ -13,7 +13,6 @@ public abstract class BaseListener {
     protected void setDriver(ITestResult result) {
         final var currentClass = result.getInstance();
         driver = ((BaseTest) currentClass).getDriver(); //for the test listeners
-        staticDriver = driver; //for allure listeners
     }
 
     protected void printSuccess(String className, String testName) {

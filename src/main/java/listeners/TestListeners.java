@@ -22,7 +22,7 @@ public class TestListeners extends BaseListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         printFailed(result.getInstanceName(), result.getName());
-        fileManager.getScreenshot(driver, result.getName());
+        fileManager.saveTestEvidence(driver, result.getName());
     }
 
     @Override

@@ -1,7 +1,7 @@
 .idea
 /target
-/src/test/resources/logs/**
-/src/test/resources/screenshots/**
+/src/test/resources/logs
+/src/test/resources/debugEvidence
 **.DS_Store
 .allure
 completeFramework.iml

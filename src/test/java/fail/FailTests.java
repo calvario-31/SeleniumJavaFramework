@@ -1,4 +1,4 @@
-package dummy;
+package fail;
 
 import base.BaseTest;
 import data.DataProviders;
@@ -8,7 +8,7 @@ import pageobjects.checkout.SuccessPage;
 
 import static data.DataProviders.ITEM_LIST_DP;
 
-public class DummyFailTests extends BaseTest {
+public class FailTests extends BaseTest {
     private SuccessPage successPage;
 
     @Test

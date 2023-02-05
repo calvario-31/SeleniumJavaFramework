@@ -13,7 +13,7 @@ public class AllureListeners extends BaseListener implements TestLifecycleListen
         if (result.getStatus().name().equalsIgnoreCase("FAILED") ||
                 result.getStatus().name().equalsIgnoreCase("BROKEN")) {
             Logs.debug("failed");
-            fileManager.getAllureScreenshot(staticDriver);
+            fileManager.takeAllureScreenshot();
         }
     }
 }
