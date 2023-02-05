@@ -3,7 +3,6 @@ package pageobjects.checkout;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -14,10 +13,6 @@ public class SuccessPage extends BasePage {
     private final $ ponyImage = $(By.className("pony_express"));
     private final $ successDescriptionLabel =
             $(By.xpath("//div[contains(text(), 'Your order has been dispatched')]"));
-
-    public SuccessPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting Success Page to load")

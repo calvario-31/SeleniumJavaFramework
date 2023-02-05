@@ -2,25 +2,24 @@ package credentials;
 
 import base.BaseTest;
 import data.DataProviders;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.credentials.LoginPage;
+import utilities.CommonFlows;
 
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyLoginPageTest() {
         loginPage.verifyPage();
-        commonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void loginTest() {
-        commonFlows.loginValidUser();
+        CommonFlows.loginValidUser();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void invalidCredentialsTest() {
         final var badCredentials = DataProviders.getInvalidCredentials();
         loginPage.fillCredentials(badCredentials.getUsername(), badCredentials.getPassword());
@@ -28,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        loginPage = new LoginPage(driver);
+    protected void initPages() {
+        loginPage = new LoginPage();
     }
 }

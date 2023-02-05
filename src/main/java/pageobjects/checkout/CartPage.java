@@ -3,7 +3,6 @@ package pageobjects.checkout;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utilities.Logs;
 import webelements.single.$;
@@ -18,10 +17,6 @@ public class CartPage extends BasePage {
     private final $ itemPrice = $(By.className("inventory_item_price"));
     private final $ removeItemButton = $(By.xpath("//button[text()='Remove']"));
     private final $ cartItemRow = $(By.className("cart_item"));
-
-    public CartPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting Cart Page to load")
@@ -81,6 +76,6 @@ public class CartPage extends BasePage {
     @Step("Verifying list is empty")
     public void verifyListIsEmpty() {
         Logs.info("Verifying list is empty");
-        Assert.assertFalse(cartItemRow.isDisplayed());
+        Assert.assertFalse(cartItemRow.doesExists());
     }
 }

@@ -1,7 +1,7 @@
 package webelements.list;
 
+import base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import webelements.single.$;
 
@@ -9,22 +9,25 @@ import java.util.List;
 
 public class $$ {
     private final By locator;
-    private final WebDriver driver;
     private List<WebElement> webElementList;
 
-    public $$(By locator, WebDriver driver) {
+    public $$(By locator) {
         this.locator = locator;
-        this.driver = driver;
     }
 
     private void findList() {
-        webElementList = driver.findElements(locator);
+        webElementList = BaseTest.getDriver().findElements(locator);
+    }
+
+    public int getSize() {
+        findList();
+        return webElementList.size();
     }
 
     public $ getElementAtIndex(int index) {
         findList();
         final var element = webElementList.get(index);
-        return new $(element, driver);
+        return new $(element);
     }
 
     public $ getFirst() {
@@ -38,14 +41,14 @@ public class $$ {
     public void clickAll() {
         findList();
         for (var webElement : webElementList) {
-            new $(webElement, driver).click();
+            new $(webElement).click();
         }
     }
 
     public void sendKeysAll(String text) {
         findList();
         for (var webElement : webElementList) {
-            new $(webElement, driver).sendKeys(text);
+            new $(webElement).sendKeys(text);
         }
     }
 }

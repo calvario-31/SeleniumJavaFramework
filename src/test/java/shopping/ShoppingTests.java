@@ -1,20 +1,20 @@
 package shopping;
 
 import base.BaseTest;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.shopping.HomeShoppingPage;
+import utilities.CommonFlows;
 
 public class ShoppingTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setup() {
-        commonFlows.loginValidUser();
+        CommonFlows.loginValidUser();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyPageTest() {
         homeShoppingPage.verifyPage();
     }
@@ -44,7 +44,7 @@ public class ShoppingTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        homeShoppingPage = new HomeShoppingPage(driver);
+    protected void initPages() {
+        homeShoppingPage = new HomeShoppingPage();
     }
 }

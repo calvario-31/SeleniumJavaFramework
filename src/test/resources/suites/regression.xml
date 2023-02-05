@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Suite" verbose="2" time-out="60000">
+<suite name="Regression Suite" verbose="2" thread-count="1" parallel="classes">
     <groups>
         <run>
             <include name="Regression"/>
@@ -20,14 +20,32 @@
     </test>
 
     <test name="bars">
-        <packages>
-            <package name="bars"/>
-        </packages>
+        <classes>
+            <class name="bars.BurgerMenuTests"/>
+            <class name="bars.FooterTests"/>
+            <class name="bars.HeaderTests"/>
+        </classes>
     </test>
 
     <test name="shopping">
-        <packages>
-            <package name="shopping"/>
-        </packages>
+        <classes>
+            <class name="shopping.ItemDetailTests"/>
+            <class name="shopping.ShoppingTests"/>
+        </classes>
+    </test>
+
+    <test name="checkout">
+        <classes>
+            <class name="checkout.CartTests"/>
+            <class name="checkout.StepOneTests"/>
+            <class name="checkout.StepTwoTests"/>
+            <class name="checkout.SuccessTests"/>
+        </classes>
+    </test>
+
+    <test name="failed">
+        <classes>
+            <class name="fail.FailTests"/>
+        </classes>
     </test>
 </suite>

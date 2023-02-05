@@ -1,16 +1,8 @@
 package base;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
 import utilities.Logs;
 
 public abstract class BaseListener {
-    protected WebDriver driver;
-
-    protected void setDriver(ITestResult result) {
-        final var currentClass = result.getInstance();
-        driver = ((BaseTest) currentClass).getDriver(); //for the test listeners
-    }
 
     protected void printSuccess(String className, String testName) {
         final var status = "PASSED";

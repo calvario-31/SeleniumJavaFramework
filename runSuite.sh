@@ -1,1 +1,1 @@
-./mvnw clean test -DsuiteName=smoke -DheadlessMode=true allure:serve
+./mvnw clean test -DsuiteName=regression -DheadlessMode=true allure:serve

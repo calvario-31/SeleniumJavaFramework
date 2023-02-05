@@ -2,20 +2,20 @@ package bars;
 
 import base.BaseTest;
 import data.DataProviders;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.Footer;
+import utilities.CommonFlows;
 
 public class FooterTests extends BaseTest {
     private Footer footer;
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.loginValidUser();
+        CommonFlows.loginValidUser();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyFooterTest() {
         footer.verifyPage();
     }
@@ -27,7 +27,7 @@ public class FooterTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        footer = new Footer(driver);
+    protected void initPages() {
+        footer = new Footer();
     }
 }

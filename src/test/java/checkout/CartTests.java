@@ -3,11 +3,11 @@ package checkout;
 import base.BaseTest;
 import data.DataProviders;
 import models.Item;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.CartPage;
 import pageobjects.shopping.HomeShoppingPage;
+import utilities.CommonFlows;
 
 public class CartTests extends BaseTest {
     private CartPage cartPage;
@@ -16,21 +16,21 @@ public class CartTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.addItemsAndGoToCart(item);
+        CommonFlows.addItemsAndGoToCart(item);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyCartTest() {
         cartPage.verifyPage();
-        commonFlows.verifyFooterHeader();
+        CommonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyCartItemsTest() {
         cartPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void returnToShoppingTest() {
         cartPage.clickOnContinueShopping();
         homeShoppingPage.waitPageToLoad();
@@ -44,8 +44,8 @@ public class CartTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        cartPage = new CartPage(driver);
-        homeShoppingPage = new HomeShoppingPage(driver);
+    protected void initPages() {
+        cartPage = new CartPage();
+        homeShoppingPage = new HomeShoppingPage();
     }
 }

@@ -3,10 +3,10 @@ package shopping;
 import base.BaseTest;
 import data.DataProviders;
 import models.Item;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.shopping.ItemDetailPage;
+import utilities.CommonFlows;
 
 public class ItemDetailTests extends BaseTest {
     private ItemDetailPage itemDetailPage;
@@ -14,17 +14,17 @@ public class ItemDetailTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.goToItemDetail(item);
+        CommonFlows.goToItemDetail(item);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyItemDetailTest() {
         itemDetailPage.verifyPage();
         itemDetailPage.verifyCorrectItemDisplay(item.getItemName(), item.getPrice());
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        itemDetailPage = new ItemDetailPage(driver);
+    protected void initPages() {
+        itemDetailPage = new ItemDetailPage();
     }
 }

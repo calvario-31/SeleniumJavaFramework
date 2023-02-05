@@ -12,7 +12,6 @@ public class TestListeners extends BaseListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         Logs.testSteps();
-        setDriver(result);
     }
 
     @Override
@@ -23,12 +22,13 @@ public class TestListeners extends BaseListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         printFailed(result.getInstanceName(), result.getName());
-        FileManager.saveTestEvidence(driver, result.getName());
+        FileManager.saveTestEvidence(result.getName());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         printSkipped(result.getInstanceName(), result.getName());
+        FileManager.saveTestEvidence(result.getName());
     }
 
     @Override

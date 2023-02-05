@@ -4,7 +4,6 @@ import base.BasePage;
 import io.qameta.allure.Step;
 import models.Url;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -17,10 +16,6 @@ public class Footer extends BasePage {
     private final $ linkedinOption = $(By.cssSelector(".social_linkedin > a"));
     private final $ disclaimer = $(By.className("footer_copy"));
     private final $ footerImage = $(By.className("footer_robot"));
-
-    public Footer(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting footer to load")

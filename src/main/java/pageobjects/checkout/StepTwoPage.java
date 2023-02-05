@@ -3,7 +3,6 @@ package pageobjects.checkout;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -23,10 +22,6 @@ public class StepTwoPage extends BasePage {
     private final $ totalLabel = $(By.className("summary_total_label"));
     private final $ finishButton = $(By.id("finish"));
     private final $ cancelButton = $(By.id("cancel"));
-
-    public StepTwoPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting Step Two Page to load")

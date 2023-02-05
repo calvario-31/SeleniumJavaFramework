@@ -3,12 +3,12 @@ package checkout;
 import base.BaseTest;
 import data.DataProviders;
 import models.Item;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.CartPage;
 import pageobjects.checkout.StepOnePage;
 import pageobjects.checkout.StepTwoPage;
+import utilities.CommonFlows;
 
 import static data.DataProviders.BAD_PERSONAL_INFO_DP;
 
@@ -20,15 +20,15 @@ public class StepOneTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.addItemsAndGoToStepOne(item);
+        CommonFlows.addItemsAndGoToStepOne(item);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyStepOnePageTest() {
         stepOnePage.verifyPage();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void validDataTest() {
         final var personalInfo = DataProviders.getPersonalInfo();
         stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(),
@@ -50,9 +50,9 @@ public class StepOneTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        stepOnePage = new StepOnePage(driver);
-        stepTwoPage = new StepTwoPage(driver);
-        cartPage = new CartPage(driver);
+    protected void initPages() {
+        stepOnePage = new StepOnePage();
+        stepTwoPage = new StepTwoPage();
+        cartPage = new CartPage();
     }
 }

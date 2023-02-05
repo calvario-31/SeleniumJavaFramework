@@ -3,7 +3,6 @@ package pageobjects.shopping;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utilities.Logs;
 import webelements.list.$$;
@@ -20,10 +19,6 @@ public class HomeShoppingPage extends BasePage {
     private $ getItemDivByName(String name) {
         final var xpath = String.format("//div[text()='%s']", name);
         return $(By.xpath(xpath));
-    }
-
-    public HomeShoppingPage(WebDriver driver) {
-        super(driver);
     }
 
     @Override

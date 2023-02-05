@@ -2,11 +2,11 @@ package bars;
 
 import base.BaseTest;
 import data.DataProviders;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.BurgerMenu;
 import pageobjects.credentials.LoginPage;
+import utilities.CommonFlows;
 
 public class BurgerMenuTests extends BaseTest {
     private BurgerMenu burgerMenu;
@@ -14,10 +14,10 @@ public class BurgerMenuTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.openMenuBurger();
+        CommonFlows.openMenuBurger();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyContentsTest() {
         burgerMenu.verifyPage();
     }
@@ -28,7 +28,7 @@ public class BurgerMenuTests extends BaseTest {
         burgerMenu.verifyAboutLink(sauceLabsUrl);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void logoutTest() {
         burgerMenu.clickOnLogout();
         loginPage.waitPageToLoad();
@@ -36,8 +36,8 @@ public class BurgerMenuTests extends BaseTest {
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        burgerMenu = new BurgerMenu(driver);
-        loginPage = new LoginPage(driver);
+    protected void initPages() {
+        burgerMenu = new BurgerMenu();
+        loginPage = new LoginPage();
     }
 }

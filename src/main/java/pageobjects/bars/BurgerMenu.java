@@ -3,7 +3,6 @@ package pageobjects.bars;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -12,10 +11,6 @@ public class BurgerMenu extends BasePage {
     private final $ allItemsOption = $(By.id("inventory_sidebar_link"));
     private final $ aboutOption = $(By.id("about_sidebar_link"));
     private final $ logoutOption = $(By.id("logout_sidebar_link"));
-
-    public BurgerMenu(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting menu burger to load")

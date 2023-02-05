@@ -3,7 +3,6 @@ package utilities;
 import data.DataProviders;
 import models.Item;
 import models.PersonalInformation;
-import org.openqa.selenium.WebDriver;
 import pageobjects.bars.BurgerMenu;
 import pageobjects.bars.Footer;
 import pageobjects.bars.Header;
@@ -16,25 +15,20 @@ import pageobjects.shopping.HomeShoppingPage;
 import pageobjects.shopping.ItemDetailPage;
 
 public class CommonFlows {
-    private final WebDriver driver;
 
-    public CommonFlows(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void goToIndex() {
-        final var login = new LoginPage(driver);
+    public static void goToIndex() {
+        final var login = new LoginPage();
 
         login.goToIndex();
         login.waitPageToLoad();
     }
 
-    public void loginValidUser() {
+    public static void loginValidUser() {
         final var credentials = DataProviders.getValidCredentials();
-        final var login = new LoginPage(driver);
-        final var homeShopping = new HomeShoppingPage(driver);
-        final var header = new Header(driver);
-        final var footer = new Footer(driver);
+        final var login = new LoginPage();
+        final var homeShopping = new HomeShoppingPage();
+        final var header = new Header();
+        final var footer = new Footer();
 
         login.fillCredentials(credentials.getUsername(), credentials.getPassword());
         homeShopping.waitPageToLoad();
@@ -42,9 +36,9 @@ public class CommonFlows {
         footer.waitPageToLoad();
     }
 
-    public void addSingleItemToCart(Item item) {
-        final var homeShoppingPage = new HomeShoppingPage(driver);
-        final var itemDetailPage = new ItemDetailPage(driver);
+    public static void addSingleItemToCart(Item item) {
+        final var homeShoppingPage = new HomeShoppingPage();
+        final var itemDetailPage = new ItemDetailPage();
 
         loginValidUser();
         homeShoppingPage.goToItemDetail(item.getItemName());
@@ -56,16 +50,16 @@ public class CommonFlows {
         homeShoppingPage.waitPageToLoad();
     }
 
-    public void goToItemDetail(Item item) {
-        final var homeShoppingPage = new HomeShoppingPage(driver);
-        final var itemDetailPage = new ItemDetailPage(driver);
+    public static void goToItemDetail(Item item) {
+        final var homeShoppingPage = new HomeShoppingPage();
+        final var itemDetailPage = new ItemDetailPage();
 
         loginValidUser();
         homeShoppingPage.goToItemDetail(item.getItemName());
         itemDetailPage.waitPageToLoad();
     }
 
-    public void addItemsToCart() {
+    public static void addItemsToCart() {
         final var listItem = DataProviders.itemsDataProvider();
 
         for (Item item : listItem) {
@@ -73,54 +67,55 @@ public class CommonFlows {
         }
     }
 
-    public void openMenuBurger() {
-        final var header = new Header(driver);
-        final var burgerMenu = new BurgerMenu(driver);
+    public static void openMenuBurger() {
+        final var header = new Header();
+        final var burgerMenu = new BurgerMenu();
 
         loginValidUser();
         header.openBurgerMenu();
         burgerMenu.waitPageToLoad();
     }
 
-    public void verifyFooterHeader() {
-        final var footer = new Footer(driver);
-        final var header = new Header(driver);
+    public static void verifyFooterHeader() {
+        final var footer = new Footer();
+        final var header = new Header();
 
         footer.verifyPage();
         header.verifyPage();
     }
 
-    public void addItemsAndGoToCart(Item item) {
-        final var cartPage = new CartPage(driver);
-        final var header = new Header(driver);
+    public static void addItemsAndGoToCart(Item item) {
+        final var cartPage = new CartPage();
+        final var header = new Header();
 
         addSingleItemToCart(item);
         header.clickOnCheckoutCart();
         cartPage.waitPageToLoad();
     }
 
-    public void addItemsAndGoToStepOne(Item item) {
-        final var cartPage = new CartPage(driver);
-        final var stepOnePage = new StepOnePage(driver);
+    public static void addItemsAndGoToStepOne(Item item) {
+        final var cartPage = new CartPage();
+        final var stepOnePage = new StepOnePage();
 
         addItemsAndGoToCart(item);
         cartPage.clickOnContinueCheckout();
         stepOnePage.waitPageToLoad();
     }
 
-    public void addItemsAndGoToStepTwo(Item item) {
-        final var stepOnePage = new StepOnePage(driver);
-        final var stepTwoPage = new StepTwoPage(driver);
+    public static void addItemsAndGoToStepTwo(Item item) {
+        final var stepOnePage = new StepOnePage();
+        final var stepTwoPage = new StepTwoPage();
         final var personalInfo = new PersonalInformation();
 
         addItemsAndGoToStepOne(item);
-        stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(), personalInfo.getZipCode());
+        stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(),
+                personalInfo.getZipCode());
         stepTwoPage.waitPageToLoad();
     }
 
-    public void addItemsFinishShopping(Item item) {
-        final var stepTwoPage = new StepTwoPage(driver);
-        final var successPage = new SuccessPage(driver);
+    public static void addItemsFinishShopping(Item item) {
+        final var stepTwoPage = new StepTwoPage();
+        final var successPage = new SuccessPage();
 
         addItemsAndGoToStepTwo(item);
         stepTwoPage.clickOnFinish();

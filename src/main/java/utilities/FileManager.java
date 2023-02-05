@@ -1,10 +1,10 @@
 package utilities;
 
+import base.BaseTest;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +16,6 @@ import java.io.PrintStream;
 public class FileManager {
     private static final String allureReportsPath = "target/allure-results";
     private static final String debugEvidenceFolder = "src/test/resources/debugEvidence";
-    public static WebDriver staticDriver;
 
     public static void deleteTestEvidence() {
         try {
@@ -46,15 +45,15 @@ public class FileManager {
     @Attachment(value = "failureScreenshot", type = "image/png")
     public static byte[] takeAllureScreenshot() {
         Logs.debug("Taking allure screenshot");
-        return ((TakesScreenshot) staticDriver).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) BaseTest.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
-    public static void saveTestEvidence(WebDriver driver, String testName) {
-        getPageSourceXML(driver, testName);
-        takeScreenshot(driver, testName);
+    public static void saveTestEvidence(String testName) {
+        getPageSourceXML(testName);
+        takeScreenshot(testName);
     }
 
-    private static void getPageSourceXML(WebDriver driver, String fileName) {
+    private static void getPageSourceXML(String fileName) {
         Logs.debug("Taking page source");
         final var path = String.format("%s/view-hierarchy-%s.html", debugEvidenceFolder, fileName);
         try {
@@ -64,7 +63,7 @@ public class FileManager {
             if (file.getParentFile().mkdirs()) {
                 Logs.debug("Writing to html file");
                 final var fileWriter = new FileWriter(file);
-                fileWriter.write(driver.getPageSource());
+                fileWriter.write(BaseTest.getDriver().getPageSource());
                 Logs.debug("Closing filewriter");
                 fileWriter.close();
             }
@@ -73,9 +72,9 @@ public class FileManager {
         }
     }
 
-    private static void takeScreenshot(WebDriver driver, String screenshotName) {
+    private static void takeScreenshot(String screenshotName) {
         Logs.debug("Taking screenshot");
-        final var screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        final var screenshotFile = ((TakesScreenshot) BaseTest.getDriver()).getScreenshotAs(OutputType.FILE);
         final var path = String.format("%s/screenshot-%s.png", debugEvidenceFolder, screenshotName);
         try {
             FileUtils.copyFile(screenshotFile, new File(path));

@@ -1,26 +1,26 @@
 package bars;
 
 import base.BaseTest;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.bars.Header;
+import utilities.CommonFlows;
 
 public class HeaderTests extends BaseTest {
     private Header header;
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.loginValidUser();
+        CommonFlows.loginValidUser();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyHeaderTest() {
         header.verifyPage();
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        header = new Header(driver);
+    protected void initPages() {
+        header = new Header();
     }
 }

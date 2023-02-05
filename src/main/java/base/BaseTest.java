@@ -8,46 +8,44 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import utilities.CommonFlows;
-import utilities.DriverManager;
+import utilities.DriverFactory;
 import utilities.Logs;
 
 @Listeners({TestListeners.class, SuiteListeners.class, InvokeMethodListeners.class})
 public abstract class BaseTest {
-    private final boolean runOnServer = System.getenv("JOB_NAME") != null;
-    private WebDriver driver;
-    protected CommonFlows commonFlows;
+    private static final ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
     protected final String regression = "Regression";
     protected final String smoke = "Smoke";
     protected final String setup = "Setup";
 
     private void initDriver() {
-        var driverManager = new DriverManager();
-
-        if (runOnServer) {
-            driver = driverManager.buildRemoteDriver();
-        } else {
-            driver = driverManager.buildLocalDriver();
-        }
+        threadLocalDriver.set(DriverFactory.createDriver());
     }
 
     @BeforeMethod(alwaysRun = true, description = "setting up the driver and going to index")
     protected void setupDriver() {
         initDriver();
-        commonFlows = new CommonFlows(driver);
+        initPages();
 
-        initPages(driver);
-        commonFlows.goToIndex();
+        Logs.debug("Maximizing window");
+        getDriver().manage().window().maximize();
+
+        Logs.debug("Deleting cookies");
+        getDriver().manage().deleteAllCookies();
+
+        CommonFlows.goToIndex();
     }
 
     @AfterMethod(alwaysRun = true, description = "killing the driver")
     protected void teardownDriver() {
         Logs.debug("Killing the driver");
-        driver.quit();
+        getDriver().quit();
+        threadLocalDriver.remove();
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    public static WebDriver getDriver() {
+        return threadLocalDriver.get();
     }
 
-    protected abstract void initPages(WebDriver driver);
+    protected abstract void initPages();
 }

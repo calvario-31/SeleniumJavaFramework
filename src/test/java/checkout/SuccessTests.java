@@ -3,11 +3,11 @@ package checkout;
 import base.BaseTest;
 import data.DataProviders;
 import models.Item;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.SuccessPage;
 import pageobjects.shopping.HomeShoppingPage;
+import utilities.CommonFlows;
 
 public class SuccessTests extends BaseTest {
     private SuccessPage successPage;
@@ -16,13 +16,13 @@ public class SuccessTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.addItemsFinishShopping(item);
+        CommonFlows.addItemsFinishShopping(item);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifySuccessPageTest() {
         successPage.verifyPage();
-        commonFlows.verifyFooterHeader();
+        CommonFlows.verifyFooterHeader();
     }
 
     @Test(groups = {regression})
@@ -30,12 +30,12 @@ public class SuccessTests extends BaseTest {
         successPage.clickOnBackToHome();
         homeShoppingPage.waitPageToLoad();
         homeShoppingPage.verifyPage();
-        commonFlows.verifyFooterHeader();
+        CommonFlows.verifyFooterHeader();
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        successPage = new SuccessPage(driver);
-        homeShoppingPage = new HomeShoppingPage(driver);
+    protected void initPages() {
+        successPage = new SuccessPage();
+        homeShoppingPage = new HomeShoppingPage();
     }
 }

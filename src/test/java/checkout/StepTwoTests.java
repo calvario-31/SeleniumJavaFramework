@@ -3,11 +3,11 @@ package checkout;
 import base.BaseTest;
 import data.DataProviders;
 import models.Item;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.checkout.StepTwoPage;
 import pageobjects.shopping.HomeShoppingPage;
+import utilities.CommonFlows;
 
 public class StepTwoTests extends BaseTest {
     private HomeShoppingPage homeShoppingPage;
@@ -16,16 +16,16 @@ public class StepTwoTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
-        commonFlows.addItemsAndGoToStepTwo(item);
+        CommonFlows.addItemsAndGoToStepTwo(item);
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyStepTwoTest() {
         stepTwoPage.verifyPage();
-        commonFlows.verifyFooterHeader();
+        CommonFlows.verifyFooterHeader();
     }
 
-    @Test(groups = {smoke})
+    @Test(groups = {smoke, regression})
     public void verifyItemContentsTest() {
         stepTwoPage.verifyItemContents(item.getItemName(), item.getPrice());
     }
@@ -35,12 +35,12 @@ public class StepTwoTests extends BaseTest {
         stepTwoPage.clickOnCancel();
         homeShoppingPage.waitPageToLoad();
         homeShoppingPage.verifyPage();
-        commonFlows.verifyFooterHeader();
+        CommonFlows.verifyFooterHeader();
     }
 
     @Override
-    protected void initPages(WebDriver driver) {
-        homeShoppingPage = new HomeShoppingPage(driver);
-        stepTwoPage = new StepTwoPage(driver);
+    protected void initPages() {
+        homeShoppingPage = new HomeShoppingPage();
+        stepTwoPage = new StepTwoPage();
     }
 }

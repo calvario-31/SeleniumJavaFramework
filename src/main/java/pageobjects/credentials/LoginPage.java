@@ -3,7 +3,6 @@ package pageobjects.credentials;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utilities.Logs;
 import webelements.single.$;
@@ -14,10 +13,6 @@ public class LoginPage extends BasePage {
     private final $ buttonLogin = $(By.id("login-button"));
     private final $ loginLogo = $(By.className("login_logo"));
     private final $ errorMessage = $(By.cssSelector("h3[data-test='error']"));
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting login page to load")

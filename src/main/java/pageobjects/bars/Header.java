@@ -3,7 +3,6 @@ package pageobjects.bars;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -12,14 +11,10 @@ public class Header extends BasePage {
     private final $ cartButton = $(By.className("shopping_cart_link"));
     private final $ burgerMenuButton = $(By.id("react-burger-menu-btn"));
 
-    public Header(WebDriver driver) {
-        super(driver);
-    }
-
     @Override
     @Step("Waiting header to load")
     public void waitPageToLoad() {
-        waitPage(appLogo, this.getClass().getSimpleName());
+        waitPage(burgerMenuButton, this.getClass().getSimpleName());
     }
 
     @Override
@@ -33,8 +28,14 @@ public class Header extends BasePage {
 
     @Step("Opening burger menu")
     public void openBurgerMenu() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException interruptedException) {
+            Logs.error(interruptedException.getLocalizedMessage());
+        }
+
         Logs.info("Opening burger menu");
-        burgerMenuButton.click();
+        burgerMenuButton.waitToBeClickable().click();
     }
 
     @Step("Clicking on checkout cart")

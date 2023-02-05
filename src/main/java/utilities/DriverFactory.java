@@ -13,14 +13,15 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.logging.Level;
 
-import static utilities.DriverManager.Browser.CHROME;
+import static utilities.DriverFactory.Browser.CHROME;
 
-public class DriverManager {
-    private Browser browser;
-    private Boolean headlessMode = true;
-    protected WebDriver driver;
+public class DriverFactory {
+    private static Boolean headlessMode = true;
+    private static final boolean runOnServer = System.getenv("JOB_NAME") != null;
 
-    public WebDriver buildLocalDriver() {
+    public static WebDriver buildLocalDriver() {
+        Browser browser;
+        WebDriver driver;
         final var browserProperty = System.getProperty("browser");
         final var headlessString = System.getProperty("headlessMode");
 
@@ -70,18 +71,11 @@ public class DriverManager {
         assert driver != null;
         ((RemoteWebDriver) driver).setLogLevel(Level.OFF);
 
-        Logs.debug("Maximizing window");
-        driver.manage().window().maximize();
-
-        Logs.debug("Deleting cookies");
-        driver.manage().deleteAllCookies();
-
-        FileManager.staticDriver = driver;
 
         return driver;
     }
 
-    public WebDriver buildRemoteDriver() {
+    public static WebDriver buildRemoteDriver() {
         //TODO
         return null;
     }
@@ -96,6 +90,14 @@ public class DriverManager {
 
         Browser(String browserName) {
             this.browserName = browserName;
+        }
+    }
+
+    public static WebDriver createDriver() {
+        if (runOnServer) {
+            return buildRemoteDriver();
+        } else {
+            return buildLocalDriver();
         }
     }
 }

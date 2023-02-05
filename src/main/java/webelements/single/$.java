@@ -1,11 +1,12 @@
 package webelements.single;
 
+import base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import webelements.list.$$;
 
 import java.time.Duration;
 
@@ -14,20 +15,17 @@ import static base.BasePage.DEFAULT_TIME_OUT;
 public class $ {
     private WebElement webElement;
     private By locator;
-    private final WebDriver driver;
     private WebDriverWait wait;
     private boolean searchForElement = true;
     private final int timeOut;
 
-    public $(By locator, WebDriver driver, int timeOut) {
+    public $(By locator, int timeOut) {
         this.locator = locator;
-        this.driver = driver;
         this.timeOut = timeOut;
     }
 
-    public $(WebElement webElement, WebDriver driver) { //init from list
+    public $(WebElement webElement) { //init from list
         this.webElement = webElement;
-        this.driver = driver;
         this.timeOut = DEFAULT_TIME_OUT;
         searchForElement = false; //we do not need to do findElement since is already init
     }
@@ -59,6 +57,11 @@ public class $ {
         return webElement.isSelected();
     }
 
+    public boolean doesExists() {
+        final var list = new $$(locator);
+        return list.getSize() > 0;
+    }
+
     public String getText() {
         findElement();
         return webElement.getText();
@@ -84,21 +87,27 @@ public class $ {
         select.selectByVisibleText(text);
     }
 
-    public $ waitForVisibility(int timeOut) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+    public $ waitToBeVisible(int timeOut) {
+        wait = new WebDriverWait(BaseTest.getDriver(), Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); //explicit wait per se
         return this;
     }
 
-    public $ waitForVisibility() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+    public $ waitToBeVisible() {
+        wait = new WebDriverWait(BaseTest.getDriver(), Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));  //explicit wait per se
+        return this;
+    }
+
+    public $ waitToBeClickable() {
+        wait = new WebDriverWait(BaseTest.getDriver(), Duration.ofSeconds(timeOut));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));  //explicit wait per se
         return this;
     }
 
     private void findElement() {
         if (searchForElement) {
-            webElement = driver.findElement(locator);
+            webElement = BaseTest.getDriver().findElement(locator);
         }
     }
 

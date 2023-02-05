@@ -3,7 +3,6 @@ package pageobjects.checkout;
 import base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import utilities.Logs;
 import webelements.single.$;
 
@@ -14,10 +13,6 @@ public class StepOnePage extends BasePage {
     private final $ continueButton = $(By.id("continue"));
     private final $ cancelButton = $(By.id("cancel"));
     private final $ errorMessage = $(By.cssSelector("h3[data-test='error']"));
-
-    public StepOnePage(WebDriver driver) {
-        super(driver);
-    }
 
     @Override
     @Step("Waiting Step One Page to load")
