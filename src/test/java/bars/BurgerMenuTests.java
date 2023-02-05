@@ -24,7 +24,7 @@ public class BurgerMenuTests extends BaseTest {
 
     @Test(groups = {regression})
     public void verifyAboutLinkTest() {
-        var sauceLabsUrl = new DataProviders().getSauceLabsUrl();
+        final var sauceLabsUrl = DataProviders.getSauceLabsUrl();
         burgerMenu.verifyAboutLink(sauceLabsUrl);
     }
 

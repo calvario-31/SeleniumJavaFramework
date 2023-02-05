@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public class FileManager {
-    private final String allureReportsPath = "target/allure-results";
-    private final String debugEvidenceFolder = "src/test/resources/debugEvidence";
+    private static final String allureReportsPath = "target/allure-results";
+    private static final String debugEvidenceFolder = "src/test/resources/debugEvidence";
     public static WebDriver staticDriver;
 
-    public FileManager deleteTestEvidence() {
+    public static void deleteTestEvidence() {
         try {
             Logs.debug("Deleting debug evidence directory");
             FileUtils.deleteDirectory(new File(debugEvidenceFolder));
@@ -28,10 +28,9 @@ public class FileManager {
         } catch (IOException ioException) {
             Logs.error("Failed to delete directory: %s%n", ioException.getLocalizedMessage());
         }
-        return this;
     }
 
-    public FileManager redirectStdErr() {
+    public static void redirectStdErr() {
         Logs.debug("Redirecting stderr");
         final var file = new File("src/test/resources/logs/stderr.log");
         FileOutputStream fos;
@@ -42,20 +41,20 @@ public class FileManager {
         }
         final var ps = new PrintStream(fos);
         System.setErr(ps);
-        return this;
     }
 
     @Attachment(value = "failureScreenshot", type = "image/png")
-    public byte[] takeAllureScreenshot() {
+    public static byte[] takeAllureScreenshot() {
         Logs.debug("Taking allure screenshot");
         return ((TakesScreenshot) staticDriver).getScreenshotAs(OutputType.BYTES);
     }
 
-    public void saveTestEvidence(WebDriver driver, String testName) {
-        getPageSourceXML(driver, testName).takeScreenshot(driver, testName);
+    public static void saveTestEvidence(WebDriver driver, String testName) {
+        getPageSourceXML(driver, testName);
+        takeScreenshot(driver, testName);
     }
 
-    private FileManager getPageSourceXML(WebDriver driver, String fileName) {
+    private static void getPageSourceXML(WebDriver driver, String fileName) {
         Logs.debug("Taking page source");
         final var path = String.format("%s/view-hierarchy-%s.html", debugEvidenceFolder, fileName);
         try {
@@ -72,10 +71,9 @@ public class FileManager {
         } catch (IOException ioException) {
             Logs.error("Failed to create/write html: %s%n", ioException.getLocalizedMessage());
         }
-        return this;
     }
 
-    private FileManager takeScreenshot(WebDriver driver, String screenshotName) {
+    private static void takeScreenshot(WebDriver driver, String screenshotName) {
         Logs.debug("Taking screenshot");
         final var screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         final var path = String.format("%s/screenshot-%s.png", debugEvidenceFolder, screenshotName);
@@ -84,6 +82,5 @@ public class FileManager {
         } catch (IOException ioException) {
             Logs.error("Failed creating screenshot: %s", ioException.getLocalizedMessage());
         }
-        return this;
     }
 }

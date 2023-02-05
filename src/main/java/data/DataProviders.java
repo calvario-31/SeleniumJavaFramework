@@ -14,52 +14,52 @@ public class DataProviders {
     public static final String BAD_PERSONAL_INFO_DP = "bad credentials";
     public static final String ITEM_LIST_DP = "item list";
 
-    public Credential getInvalidCredentials() {
+    public static Credential getInvalidCredentials() {
         Logs.debug("Creating invalid credentials");
-        final var credentialsMap = new MapParsers().getCredentialsMap();
+        final var credentialsMap = MapParsers.getCredentialsMap();
         return credentialsMap.get("locked");
     }
 
-    public String getSauceLabsUrl() {
+    public static String getSauceLabsUrl() {
         Logs.debug("Creating saucelabs url");
-        final var urlMap = new MapParsers().getUrlsMap();
+        final var urlMap = MapParsers.getUrlsMap();
         return urlMap.get("saucelabs").getUrl();
     }
 
-    public HashMap<String, Url> getSocialMediaMap() {
+    public static HashMap<String, Url> getSocialMediaMap() {
         Logs.debug("Creating social media urls data provider");
-        return new MapParsers().getUrlsMap();
+        return MapParsers.getUrlsMap();
     }
 
-    public PersonalInformation getPersonalInfo() {
+    public static PersonalInformation getPersonalInfo() {
         Logs.debug("Creating personal info model data provider");
         return new PersonalInformation();
     }
 
-    public Item getSingleItem() {
-        final var itemMap = new MapParsers().getItemsMap();
+    public static Item getSingleItem() {
+        final var itemMap = MapParsers.getItemsMap();
 
         Logs.debug("Returning single item using items map");
         return itemMap.get("bike");
     }
 
-    public Credential getValidCredentials() {
-        final var credentialsMap = new MapParsers().getCredentialsMap();
+    public static Credential getValidCredentials() {
+        final var credentialsMap = MapParsers.getCredentialsMap();
 
         Logs.debug("Returning valid credentials using credentials map");
         return credentialsMap.get("valid");
     }
 
-    public List<Item> itemsDataProvider() {
+    public static List<Item> itemsDataProvider() {
         Logs.debug("Returning all items as a list");
-        return new ExcelReader().getItemList();
+        return ExcelReader.getItemList();
     }
 
     @DataProvider(name = BAD_PERSONAL_INFO_DP)
-    public Object[][] badPersonalInfoDataProvider() {
+    public static Object[][] badPersonalInfoDataProvider() {
         Logs.debug("Creating bad personal info model data provider");
         final var personalInfo = new PersonalInformation();
-        final var errorMessageMap = new MapParsers().getErrorMessagesMap();
+        final var errorMessageMap = MapParsers.getErrorMessagesMap();
 
         final var firstname = personalInfo.getFirstName();
         final var lastname = personalInfo.getLastName();
@@ -78,9 +78,9 @@ public class DataProviders {
     }
 
     @DataProvider(name = ITEM_LIST_DP)
-    public Object[][] itemListDP() {
+    public static Object[][] itemListDP() {
         Logs.debug("Creating item list data provider");
-        final var itemList = new ExcelReader().getItemList();
+        final var itemList = ExcelReader.getItemList();
         final var listLength = itemList.size();
 
         final var object = new Object[listLength][];

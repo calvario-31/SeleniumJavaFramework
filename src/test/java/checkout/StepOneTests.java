@@ -16,7 +16,7 @@ public class StepOneTests extends BaseTest {
     private StepOnePage stepOnePage;
     private StepTwoPage stepTwoPage;
     private CartPage cartPage;
-    private final Item item = dataProviders.getSingleItem();
+    private final Item item = DataProviders.getSingleItem();
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {
@@ -30,7 +30,7 @@ public class StepOneTests extends BaseTest {
 
     @Test(groups = {smoke})
     public void validDataTest() {
-        var personalInfo = new DataProviders().getPersonalInfo();
+        final var personalInfo = DataProviders.getPersonalInfo();
         stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(),
                 personalInfo.getZipCode());
         stepTwoPage.waitPageToLoad();

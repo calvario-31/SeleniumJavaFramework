@@ -22,7 +22,7 @@ public class FooterTests extends BaseTest {
 
     @Test(groups = {regression})
     public void verifySocialMediaLinksTest() {
-        final var socialMediaMap = new DataProviders().getSocialMediaMap();
+        final var socialMediaMap = DataProviders.getSocialMediaMap();
         footer.verifySocialMediaLinks(socialMediaMap);
     }
 

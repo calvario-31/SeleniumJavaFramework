@@ -1,6 +1,5 @@
 package base;
 
-import data.DataProviders;
 import listeners.InvokeMethodListeners;
 import listeners.SuiteListeners;
 import listeners.TestListeners;
@@ -20,7 +19,6 @@ public abstract class BaseTest {
     protected final String regression = "Regression";
     protected final String smoke = "Smoke";
     protected final String setup = "Setup";
-    protected final DataProviders dataProviders = new DataProviders();
 
     private void initDriver() {
         var driverManager = new DriverManager();

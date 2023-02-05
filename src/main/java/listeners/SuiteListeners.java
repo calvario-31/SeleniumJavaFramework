@@ -3,6 +3,7 @@ package listeners;
 import base.BaseListener;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
+import utilities.FileManager;
 import utilities.Logs;
 
 public class SuiteListeners extends BaseListener implements ISuiteListener {
@@ -10,7 +11,8 @@ public class SuiteListeners extends BaseListener implements ISuiteListener {
     @Override
     public void onStart(ISuite suite) {
         Logs.startSuite(suite.getName());
-        fileManager.deleteTestEvidence().redirectStdErr();
+        FileManager.deleteTestEvidence();
+        FileManager.redirectStdErr();
     }
 
     @Override

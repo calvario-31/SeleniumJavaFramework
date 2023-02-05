@@ -24,12 +24,13 @@ public class CommonFlows {
 
     public void goToIndex() {
         final var login = new LoginPage(driver);
+
         login.goToIndex();
         login.waitPageToLoad();
     }
 
     public void loginValidUser() {
-        final var credentials = new DataProviders().getValidCredentials();
+        final var credentials = DataProviders.getValidCredentials();
         final var login = new LoginPage(driver);
         final var homeShopping = new HomeShoppingPage(driver);
         final var header = new Header(driver);
@@ -65,7 +66,7 @@ public class CommonFlows {
     }
 
     public void addItemsToCart() {
-        final var listItem = new DataProviders().itemsDataProvider();
+        final var listItem = DataProviders.itemsDataProvider();
 
         for (Item item : listItem) {
             addSingleItemToCart(item);
@@ -101,6 +102,7 @@ public class CommonFlows {
     public void addItemsAndGoToStepOne(Item item) {
         final var cartPage = new CartPage(driver);
         final var stepOnePage = new StepOnePage(driver);
+
         addItemsAndGoToCart(item);
         cartPage.clickOnContinueCheckout();
         stepOnePage.waitPageToLoad();
@@ -110,6 +112,7 @@ public class CommonFlows {
         final var stepOnePage = new StepOnePage(driver);
         final var stepTwoPage = new StepTwoPage(driver);
         final var personalInfo = new PersonalInformation();
+
         addItemsAndGoToStepOne(item);
         stepOnePage.fillForm(personalInfo.getFirstName(), personalInfo.getLastName(), personalInfo.getZipCode());
         stepTwoPage.waitPageToLoad();

@@ -2,13 +2,10 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import utilities.FileManager;
 import utilities.Logs;
 
 public abstract class BaseListener {
     protected WebDriver driver;
-    protected static WebDriver staticDriver;
-    protected final FileManager fileManager = new FileManager();
 
     protected void setDriver(ITestResult result) {
         final var currentClass = result.getInstance();

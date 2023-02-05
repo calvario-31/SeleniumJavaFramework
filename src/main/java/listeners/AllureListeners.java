@@ -3,6 +3,7 @@ package listeners;
 import base.BaseListener;
 import io.qameta.allure.listener.TestLifecycleListener;
 import io.qameta.allure.model.TestResult;
+import utilities.FileManager;
 import utilities.Logs;
 
 public class AllureListeners extends BaseListener implements TestLifecycleListener {
@@ -13,7 +14,7 @@ public class AllureListeners extends BaseListener implements TestLifecycleListen
         if (result.getStatus().name().equalsIgnoreCase("FAILED") ||
                 result.getStatus().name().equalsIgnoreCase("BROKEN")) {
             Logs.debug("failed");
-            fileManager.takeAllureScreenshot();
+            FileManager.takeAllureScreenshot();
         }
     }
 }

@@ -1,6 +1,7 @@
 package checkout;
 
 import base.BaseTest;
+import data.DataProviders;
 import models.Item;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
@@ -11,7 +12,7 @@ import pageobjects.shopping.HomeShoppingPage;
 public class CartTests extends BaseTest {
     private CartPage cartPage;
     private HomeShoppingPage homeShoppingPage;
-    private final Item item = dataProviders.getSingleItem();
+    private final Item item = DataProviders.getSingleItem();
 
     @BeforeMethod(alwaysRun = true, description = setup)
     public void setUp() {

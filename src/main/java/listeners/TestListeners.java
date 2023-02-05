@@ -4,6 +4,7 @@ import base.BaseListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utilities.FileManager;
 import utilities.Logs;
 
 public class TestListeners extends BaseListener implements ITestListener {
@@ -22,7 +23,7 @@ public class TestListeners extends BaseListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         printFailed(result.getInstanceName(), result.getName());
-        fileManager.saveTestEvidence(driver, result.getName());
+        FileManager.saveTestEvidence(driver, result.getName());
     }
 
     @Override

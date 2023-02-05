@@ -22,7 +22,7 @@ public class LoginTests extends BaseTest {
 
     @Test(groups = {smoke})
     public void invalidCredentialsTest() {
-        var badCredentials = new DataProviders().getInvalidCredentials();
+        final var badCredentials = DataProviders.getInvalidCredentials();
         loginPage.fillCredentials(badCredentials.getUsername(), badCredentials.getPassword());
         loginPage.verifyLockedMessageIsDisplayed();
     }
