@@ -81,10 +81,6 @@ public class Logs {
         log.info(message);
     }
 
-    public static void warn(String message) {
-        log.warn(message);
-    }
-
     public static void error(String message) {
         log.error(message);
     }
@@ -95,10 +91,6 @@ public class Logs {
 
     public static void info(String format, Object... args) {
         log.info(new Formatter().format(format, args).toString());
-    }
-
-    public static void warn(String format, Object... args) {
-        log.warn(new Formatter().format(format, args).toString());
     }
 
     public static void error(String format, Object... args) {
